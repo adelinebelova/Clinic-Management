@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App.Clinic.Views.PatientManagement"
+             Title="PatientManagement"
+             NavigatedTo="PatientManagement_NavigatedTo"
+             >
+    <VerticalStackLayout>
+        <ListView
+            ItemsSource="{Binding Patients}"
+            SelectedItem="{Binding SelectedPatient}"
+            >   
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding Id}"/>
+                            <Label Grid.Column="1" Text="{Binding Name}"/>
+                            <Label Grid.Column="2" Text="{Binding Birthday}"/>
+                            <Label Grid.Column="3" Text="{Binding Address}"/>
+                            <Label Grid.Column="4" Text="{Binding Race}"/>
+                            <Label Grid.Column="5" Text="{Binding Gender}"/>
+                            <Button Grid.Column="6" Text="Edit" Clicked="EditClicked"/>
+                            <Button Grid.Column="7" Text="Delete" Clicked="DeleteClicked"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="Add" Clicked="AddClicked"/>
+        <Button Text="Cancel" Clicked="CancelClicked" />
+    </VerticalStackLayout>
+</ContentPage>
