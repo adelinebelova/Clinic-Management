@@ -1,4 +1,5 @@
 using Library.Clinic.Models;
+using App.Clinic.ViewModels;
 using Library.Clinic.Services;
 using System.ComponentModel;
 
@@ -21,26 +22,27 @@ public partial class PhysicianView : ContentPage
 
     private void AddClicked(object sender, EventArgs e)
     {
-        var physicianToAdd = BindingContext as Physician;
-        if (physicianToAdd != null)
-        {
-            PhysicianServiceProxy
-            .Current
-            .AddOrUpdatePhysician(physicianToAdd);
-        }
-
-        Shell.Current.GoToAsync("//Physicians");
+        (BindingContext as PhysicianViewModel)?.DoAdd();
     }
 
     private void PhysicianView_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
+        //TODO: this really needs to be in a view model
         if(PhysicianId > 0)
         {
-            BindingContext = PhysicianServiceProxy.Current
+            var model = PhysicianServiceProxy.Current
                 .Physicians.FirstOrDefault(p => p.Id == PhysicianId);
+            if(model != null)
+            {
+                BindingContext = new PhysicianViewModel(model);
+            } else
+            {
+                BindingContext = new PhysicianViewModel();
+            }
+            
         } else
         {
-            BindingContext = new Physician();
+            BindingContext = new PhysicianViewModel();
         }
         
     }

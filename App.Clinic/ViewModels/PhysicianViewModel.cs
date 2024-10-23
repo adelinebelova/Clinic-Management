@@ -1,76 +1,119 @@
 using System;
 using System.Runtime.CompilerServices;
 using Library.Clinic.Models;
+using System.Windows.Input;
+using Library.Clinic.Services;
 
 namespace App.Clinic.ViewModels;
 
 public class PhysicianViewModel
 {
-    private Physician? model { get; set;}
+    public Physician? Model { get; set;}
     public int Id {
         get{
-            if(model == null){
+            if(Model == null){
                 return -1;
             }
 
-            return model.Id;
+            return Model.Id;
         }
         set{
-            if(model != null && model.Id != value){
-                model.Id = value;
+            if(Model != null && Model.Id != value){
+                Model.Id = value;
             }
         }
     }
 
+    public ICommand? DeleteCommand { get; set; }
+    public ICommand? EditCommand { get; set; }
+
     public string Name{
         //you can use lambda expressions to return the getter here
-        get => model?.Name ?? string.Empty;
+        get => Model?.Name ?? string.Empty;
             
         set{
-            if(model != null){
-                model.Name = value;
+            if(Model != null){
+                Model.Name = value;
             }
         }
+    }
+
+    public void SetupCommands()
+    {
+        DeleteCommand = new Command(DoDelete);
+        EditCommand = new Command((p) => DoEdit(p as PhysicianViewModel));
+    }
+
+    private void DoDelete()
+    {
+        if (Id > 0)
+        {
+            PhysicianServiceProxy.Current.DeletePhysician(Id);
+            Shell.Current.GoToAsync("//Physicians");
+        }
+    }
+
+    private void DoEdit(PhysicianViewModel? pvm)
+    {
+        if (pvm == null)
+        {
+            return;
+        }
+        var selectedPhysicianId = pvm?.Id ?? 0;
+        Shell.Current.GoToAsync($"//PatientDetails?patientId={selectedPhysicianId}");
+    }
+
+    public void DoAdd(){
+        if (Model != null)
+            {
+                PhysicianServiceProxy
+                .Current
+                .AddOrUpdatePhysician(Model);
+            }
+
+            Shell.Current.GoToAsync("//Physicians");
     }
 
     public int LicenseNumber{
         //you can use lambda expressions to return the getter here
-        get => model?.LicenseNumber ?? 0;
+        get => Model?.LicenseNumber ?? 0;
             
         set{
-            if(model != null){
-                model.LicenseNumber = value;
+            if(Model != null){
+                Model.LicenseNumber = value;
             }
         }
     }
 
     public DateOnly GradDate{
-        get => model?.GradDate ?? DateOnly.MinValue; 
+        get => Model?.GradDate ?? DateOnly.MinValue; 
 
         set{
-            if(model != null){
-                model.GradDate = value;
+            if(Model != null){
+                Model.GradDate = value;
             }
         }
     }
 
     public string Specializations{
         //you can use lambda expressions to return the getter here
-        get => model?.Specializations ?? string.Empty;
+        get => Model?.Specializations ?? string.Empty;
             
         set{
-            if(model != null){
-                model.Specializations = value;
+            if(Model != null){
+                Model.Specializations = value;
             }
         }
     }
 
     public PhysicianViewModel(){
-        model = new Physician();
+        Model = new Physician();
+        SetupCommands();
     }
 
     //conversion constructor
     public PhysicianViewModel(Physician? _model){
-        model = _model;
+        Model = _model;
+        SetupCommands();
     }
 }

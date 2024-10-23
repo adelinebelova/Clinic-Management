@@ -1,64 +1,114 @@
-using System;
-using System.Runtime.CompilerServices;
 using Library.Clinic.Models;
+using Library.Clinic.Services;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace App.Clinic.ViewModels;
-
-public class AppointmentViewModel
+namespace App.Clinic.ViewModels
 {
-    private Appointment? model { get; set;}
-    public int Id {
-        get{
-            if(model == null){
-                return -1;
-            }
-
-            return model.Id;
-        }
-        set{
-            if(model != null && model.Id != value){
-                model.Id = value;
-            }
-        }
-    }
-
-    public DateTime Schedule{
-        get => model?.Schedule ?? DateTime.MinValue;
-
-        set{
-            if(model != null){
-                model.Schedule = value;
-            }
-        }
-    }
-
-    public Patient Patient{
-        get => model?.Patient ?? new Patient();
-
-        set{
-            if(model != null){
-                model.Patient = value;
-            }
-        }
-    }
-
-    public Physician Physician{
-        get => model?.Physician ?? new Physician();
-
-        set{
-            if(model != null){
-                model.Physician = value;
-            }
-        }
-    }
-    
-    public AppointmentViewModel()
+    public class AppointmentViewModel
     {
-        model = new Appointment();
-    }
+        public Appointment? Model { get; set; }
 
-    //conversion constructor
-    public AppointmentViewModel(Appointment? _model){
-        model = _model;
+        public string PatientName
+        {
+            get
+            {
+                if(Model != null && Model.PatientId > 0)
+                {
+                    if(Model.Patient == null)
+                    {
+                        Model.Patient = PatientServiceProxy
+                            .Current
+                            .Patients
+                            .FirstOrDefault(p => p.Id == Model.PatientId);
+                    }
+                }
+
+                return Model?.Patient?.Name ?? string.Empty;
+            }
+        }
+
+        public Patient? SelectedPatient { 
+            get
+            {
+                return Model?.Patient;
+            }
+
+            set
+            {
+                var selectedPatient = value;
+                if(Model != null)
+                {
+                    Model.Patient = selectedPatient;
+                    Model.PatientId = selectedPatient?.Id ?? 0;
+                }
+
+            }
+         }
+        public ObservableCollection<Patient> Patients { 
+            get
+            {
+                return new ObservableCollection<Patient>(PatientServiceProxy.Current.Patients);
+            }
+        }
+
+        public DateTime MinStartDate
+        {
+            get
+            {
+                return DateTime.Today;
+            }
+        }
+
+        public void RefreshTime()
+        {
+            if (Model != null)
+            {
+                if (Model.StartTime != null)
+                {
+                    Model.StartTime = StartDate;
+                    Model.StartTime = Model.StartTime.Value.AddHours(StartTime.Hours);
+                }
+            }
+        }
+        
+        public DateTime StartDate { 
+            
+            get
+            {
+                return Model?.StartTime?.Date ?? DateTime.Today;
+            }
+
+            set
+            {
+                if (Model != null)
+                {
+                    Model.StartTime = value;
+                    RefreshTime();
+                }
+            }
+        }
+        public TimeSpan StartTime { get; set; }
+
+        public AppointmentViewModel() {
+            Model = new Appointment();
+        }
+        public AppointmentViewModel(Appointment a)
+        {
+            Model = a;
+        }
+
+        public void AddOrUpdate()
+        {
+            if(Model != null)
+            {
+                AppointmentServiceProxy.Current.AddOrUpdate(Model);
+            }
+            
+        }
     }
 }

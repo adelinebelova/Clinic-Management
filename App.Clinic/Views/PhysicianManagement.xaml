@@ -7,6 +7,14 @@
              >
              
     <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Entry Grid.Column="0" Text="{Binding Query}"/>
+            <Button Grid.Column="1" Text="Search" Clicked="RefreshClicked"/>
+        </Grid>
         <ListView
             ItemsSource="{Binding Physicians}"
             SelectedItem="{Binding SelectedPhysician}"
@@ -30,8 +38,8 @@
                             <Label Grid.Column="2" Text="{Binding LicenseNumber}"/>
                             <Label Grid.Column="3" Text="{Binding GradDate}"/>
                             <Label Grid.Column="4" Text="{Binding Specializations}"/>
-                            <Button Grid.Column="5" Text="Edit" Clicked="EditClicked"/>
-                            <Button Grid.Column="6" Text="Delete" Clicked="DeleteClicked"/>
+                            <Button Grid.Column="5" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
+                            <Button Grid.Column="6" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

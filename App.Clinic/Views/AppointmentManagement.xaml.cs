@@ -1,12 +1,8 @@
 using App.Clinic.ViewModels;
-using Library.Clinic.Models;
-using Library.Clinic.Services;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace App.Clinic.Views;
 
-public partial class AppointmentManagement : ContentPage, INotifyPropertyChanged
+public partial class AppointmentManagement : ContentPage
 {
 	public AppointmentManagement()
 	{
@@ -14,31 +10,13 @@ public partial class AppointmentManagement : ContentPage, INotifyPropertyChanged
         BindingContext = new AppointmentManagementViewModel();
 	}
 
-    private void EditClicked(object sender, EventArgs e)
+    private void CancelClicked(object sender, EventArgs e)
     {
-        var selectedAppointmentId = (BindingContext as AppointmentManagementViewModel)?
-            .SelectedAppointment?.Id ?? 0;
-        Shell.Current.GoToAsync($"//AppointmentDetails?appointmentId={selectedAppointmentId}");
-    }
-
-    private void DeleteClicked(object sender, EventArgs e)
-    {
-        (BindingContext as AppointmentManagementViewModel)?.Delete();
+        Shell.Current.GoToAsync("//MainPage");
     }
 
     private void AddClicked(object sender, EventArgs e)
     {
-        Shell.Current.GoToAsync("//AppointmentDetails?appointmentId=0");
+        Shell.Current.GoToAsync("//AppointmentDetails");
     }
-
-    private void CancelClicked(object sender, EventArgs e)
-    {
-		Shell.Current.GoToAsync("//MainPage");
-    }
-
-	private void AppointmentManagement_NavigatedTo(object sender, NavigatedToEventArgs e)
-    {
-        (BindingContext as AppointmentManagementViewModel)?.Refresh();
-    }
-
 }

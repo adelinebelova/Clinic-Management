@@ -6,6 +6,14 @@
              NavigatedTo="PatientManagement_NavigatedTo"
              >
     <VerticalStackLayout>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="12*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Entry Grid.Column="0" Text="{Binding Query}"/>
+            <Button Grid.Column="1" Text="Search" Clicked="RefreshClicked"/>
+        </Grid>
         <ListView
             ItemsSource="{Binding Patients}"
             SelectedItem="{Binding SelectedPatient}"
@@ -31,8 +39,8 @@
                             <Label Grid.Column="3" Text="{Binding Address}"/>
                             <Label Grid.Column="4" Text="{Binding Race}"/>
                             <Label Grid.Column="5" Text="{Binding Gender}"/>
-                            <Button Grid.Column="6" Text="Edit" Clicked="EditClicked"/>
-                            <Button Grid.Column="7" Text="Delete" Clicked="DeleteClicked"/>
+                            <Button Grid.Column="6" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
+                            <Button Grid.Column="7" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

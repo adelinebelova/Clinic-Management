@@ -21,13 +21,23 @@ namespace App.Clinic.ViewModels
         }
 
         public PatientViewModel? SelectedPatient { get; set; }
+
+        public string? Query { get; set; }
         public ObservableCollection<PatientViewModel> Patients
         {
             get
-            { //where = only grab things that are not null from the patientserviceproxy
-                return new ObservableCollection<PatientViewModel>(PatientServiceProxy.Current.Patients
-                .Where(p => p != null)
-                .Select(p => new PatientViewModel(p)));
+            {
+                var retVal = new ObservableCollection<PatientViewModel>(
+                    PatientServiceProxy
+                    .Current
+                    .Patients
+                    .Where(p=>p != null)
+                    .Where(p => p.Name.ToUpper().Contains(Query?.ToUpper() ?? string.Empty))
+                    .Take(100)
+                    .Select(p => new PatientViewModel(p))
+                    );
+
+                return retVal;
             }
         }
 
