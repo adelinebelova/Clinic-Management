@@ -60,5 +60,14 @@ namespace Library.Clinic.Services
             }
 
         }
+
+        public void CancelAppointment(int id) {
+            var appointmentToRemove = Appointments.FirstOrDefault(p => p.Id == id);
+
+            if (appointmentToRemove != null)
+            {
+                Appointments.Remove(appointmentToRemove);
+            }
+        }
     }
 }

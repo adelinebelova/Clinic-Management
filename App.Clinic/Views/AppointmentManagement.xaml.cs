@@ -24,4 +24,9 @@ public partial class AppointmentManagement : ContentPage
     {
         (BindingContext as AppointmentManagementViewModel)?.Refresh();
     }
+
+    private void RefreshClicked(object sender, EventArgs e)
+    {
+        (BindingContext as AppointmentManagementViewModel)?.Refresh();
+    }
 }

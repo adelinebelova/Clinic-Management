@@ -41,17 +41,6 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public void Delete()
-        {
-            if(SelectedPatient == null)
-            {
-                return;
-            }
-            PatientServiceProxy.Current.DeletePatient(SelectedPatient.Id);
-
-            Refresh();
-        }
-
         public void Refresh()
         {
             NotifyPropertyChanged(nameof(Patients));

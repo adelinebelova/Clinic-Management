@@ -69,14 +69,18 @@
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Column="0"
-                                    Text="Delete"/>
+                                    Text="Delete"
+                                    Command="{Binding DeleteCommand}" 
+                                    Clicked="RefreshClicked"/>
                             </Grid>
                             <Grid Grid.Column="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
                                 <Button Grid.Column="0"
-                                    Text="Edit"/>
+                                    Text="Edit"
+                                    Command="{Binding EditCommand}" 
+                                    CommandParameter="{Binding}"/>
                             </Grid>
                         </Grid>
                     </ViewCell>

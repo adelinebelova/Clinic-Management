@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace App.Clinic.ViewModels
 {
@@ -23,6 +24,21 @@ namespace App.Clinic.ViewModels
         public ObservableCollection<Physician> Physicians {
             get{
                 return new ObservableCollection<Physician>(PhysicianServiceProxy.Current.Physicians);
+            }
+        }
+
+        public int Id {
+            get{
+                if(Model == null){
+                    return -1;
+                }
+
+                return Model.Id;
+            }
+            set{
+                if(Model != null && Model.Id != value){
+                    Model.Id = value;
+                }
             }
         }
 
@@ -157,13 +173,40 @@ namespace App.Clinic.ViewModels
             }
         }
 
+        public ICommand? DeleteCommand {get; set;}
+        public ICommand? EditCommand { get; set; }
+
+        //Allows us to execute Edit and Delete with the Id associated with the row, instead 
+        //of having to click on the row before hitting the button.
+        public void SetupCommands(){
+            DeleteCommand = new Command(DoDelete);
+            EditCommand = new Command((p) => DoEdit(p as AppointmentViewModel));
+        }
+
+        private void DoDelete(){
+            if(Id > 0){
+                AppointmentServiceProxy.Current.CancelAppointment(Id);
+                Shell.Current.GoToAsync("//Appointments");
+            }
+        }
+
+        private void DoEdit(AppointmentViewModel? avm){
+            if (avm == null){
+                return;
+            }
+            var selectedAppointmentId = avm?.Id ?? 0;
+            Shell.Current.GoToAsync($"//AppointmentDetails?appointmentId={selectedAppointmentId}");
+        }    
+
         public AppointmentViewModel() {
             Model = new Appointment();
+            SetupCommands();
         }
         
         public AppointmentViewModel(Appointment a)
         {
             Model = a;
+            SetupCommands();
         }
 
         public void AddOrUpdate()

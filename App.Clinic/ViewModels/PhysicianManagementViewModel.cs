@@ -40,17 +40,6 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public void Delete()
-        {
-            if(SelectedPhysician == null)
-            {
-                return;
-            }
-            PhysicianServiceProxy.Current.DeletePhysician(SelectedPhysician.Id);
-
-            Refresh();
-        }
-
         public void Refresh()
         {
             NotifyPropertyChanged(nameof(Physicians));
