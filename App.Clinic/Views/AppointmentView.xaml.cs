@@ -1,13 +1,15 @@
 using App.Clinic.ViewModels;
+using Library.Clinic.Services;
 
 namespace App.Clinic.Views;
 
+[QueryProperty(nameof(AppointmentId), "appointmentId")]
 public partial class AppointmentView : ContentPage
 {
+    public int AppointmentId { get; set; }
 	public AppointmentView()
 	{
 		InitializeComponent();
-		BindingContext = new AppointmentViewModel();
 	}
 
     private void CancelClicked(object sender, EventArgs e)
@@ -19,6 +21,28 @@ public partial class AppointmentView : ContentPage
     {
         (BindingContext as AppointmentViewModel)?.AddOrUpdate();
         Shell.Current.GoToAsync("//Appointments");
+    }
+
+    private void AppointmentView_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        //TODO: this really needs to be in a view model
+        if(AppointmentId > 0)
+        {
+            var model = AppointmentServiceProxy.Current
+                .Appointments.FirstOrDefault(p => p.Id == AppointmentId);
+            if(model != null)
+            {
+                BindingContext = new AppointmentViewModel(model);
+            } else
+            {
+                BindingContext = new AppointmentViewModel();
+            }
+            
+        } else
+        {
+            BindingContext = new AppointmentViewModel();
+        }
+        
     }
 
     private void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

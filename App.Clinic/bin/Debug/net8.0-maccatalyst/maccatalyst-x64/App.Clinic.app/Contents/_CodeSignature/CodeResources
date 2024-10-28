@@ -12,6 +12,10 @@
 		<data>
 		lorAGchYxQEOrnn6vT65E9MLKGs=
 		</data>
+		<key>Resources/MauiInfo.plist</key>
+		<data>
+		iEtuUGCV6JM3gxS/pO33swhmpp8=
+		</data>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>
 		<data>
 		oowkf1sL6T19nanXUObgmuayWqM=
@@ -47,28 +51,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			UNjRxxpj9Ymo6Q6CI2benA5JVG0rBCYUxdQArCdQ8d0=
+			pQybO8vTRcvyYteugWo8tkEnxu9kp51G2QWibuRbKi8=
 			</data>
 		</dict>
 		<key>MonoBundle/App.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			n2cFDkndo+h34wvl2VSf5f2qXJeK1Me0IgGSBjT/lEE=
+			PVY/eEo3qPq/+101s0Z7n41Ppebr7XI5aLdgIsFm6Gk=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			nQSwAR9mM8JU2rx8ydpxE2Q0ky43iHTCX+jg7fh2oDg=
+			z5QKFxs45IFjbkbP8cLV9AYjKMaZQ/BCXnQYjZM5UpY=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1imi5V9DFzjPBCgA8z84UzaL3vaF8/h6lMNWmFK8n7w=
+			y45IVlfOhp07T+GusGmmQZZy6CdElifMZ3jdO/vmBbw=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -162,6 +166,13 @@
 			xkctCH0Xqx7gsEpCHTfVgq/gQiyctZ25WQLDAV96NlU=
 			</data>
 		</dict>
+		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			44GU/1+DJzLiyfdpmd3z6aQaCi0AXozuz6DuoDoTwNE=
+			</data>
+		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.Xaml.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -209,6 +220,20 @@
 			<key>hash2</key>
 			<data>
 			GLNwMVguoLYRgW7HbGzhU2+gMPbuBQ2Q0JlSC0rNwDU=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			bKphDSQjgkjA9FYGZNqIn5vQYWQX7L/VPEN8jqRRd+g=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.TapContract.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			SVllLmIWcWiR7rAIZzHR+151Ngnme94U4zDpt7o7OIE=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Win32.Primitives.dll</key>
@@ -1637,6 +1662,13 @@
 			<key>hash2</key>
 			<data>
 			Y6XeOVHK8lr9mrkTrZWsXja/AhtWkZZ3w1RodYu8hTs=
+			</data>
+		</dict>
+		<key>Resources/MauiInfo.plist</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			tx0KXqEC+DvcCGyogQTEQWHcCWJYYqH24NtPwhpQEjo=
 			</data>
 		</dict>
 		<key>Resources/MonoTouchDebugConfiguration.txt</key>

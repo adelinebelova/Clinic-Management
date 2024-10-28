@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App.Clinic.Views.AppointmentManagement"
-             Title="AppointmentManagement">
+             Title="AppointmentManagement"
+             NavigatedTo="AppointmentManagement_NavigatedTo">
     <VerticalStackLayout>
         <ListView
             ItemsSource="{Binding Appointments}"
@@ -12,6 +13,9 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -27,8 +31,30 @@
                                 <Label Grid.Column="1"
                                     Text="{Binding PatientName}"/>
                             </Grid>
+                            <!-- Physician Display-->
                             <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                    Text="Physician:"/>
+                                <Label Grid.Column="1"
+                                    Text="{Binding PhysicianName}"/>
+                            </Grid>
+                            <Grid Grid.Column="2">
                                 <!-- Start Time Display-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                    Text="Appointment Date:"/>
+                                <Label Grid.Column="1"
+                                    Text="{Binding DisplayAppointmentStartDate}"/>
+                            </Grid>
+                            <Grid Grid.Column="3">
+                                <!-- End Time Display-->
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                     <ColumnDefinition/>
@@ -36,18 +62,21 @@
                                 <Label Grid.Column="0"
                                     Text="Appointment Start:"/>
                                 <Label Grid.Column="1"
-                                    Text="APPOINTMENT START"/>
+                                    Text="{Binding DisplayAppointmentStartTime}"/>
                             </Grid>
-                            <Grid Grid.Column="2">
-                                <!-- End Time Display-->
+                            <Grid Grid.Column="4">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Button Grid.Column="0"
+                                    Text="Delete"/>
+                            </Grid>
+                            <Grid Grid.Column="5">
+                                <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0"
-                                    Text="Appointment End:"/>
-                                <Label Grid.Column="1"
-                                    Text="APPOINTMENT END"/>
+                                <Button Grid.Column="0"
+                                    Text="Edit"/>
                             </Grid>
                         </Grid>
                     </ViewCell>

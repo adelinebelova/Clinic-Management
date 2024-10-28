@@ -13,6 +13,19 @@ namespace App.Clinic.ViewModels
     {
         public Appointment? Model { get; set; }
 
+        public ObservableCollection<Patient> Patients { 
+            get
+            {
+                return new ObservableCollection<Patient>(PatientServiceProxy.Current.Patients);
+            }
+        }
+
+        public ObservableCollection<Physician> Physicians {
+            get{
+                return new ObservableCollection<Physician>(PhysicianServiceProxy.Current.Physicians);
+            }
+        }
+
         public string PatientName
         {
             get
@@ -29,6 +42,25 @@ namespace App.Clinic.ViewModels
                 }
 
                 return Model?.Patient?.Name ?? string.Empty;
+            }
+        }
+
+        public string PhysicianName
+        {
+            get
+            {
+                if(Model != null && Model.PhysicianId > 0)
+                {
+                    if(Model.Physician == null)
+                    {
+                        Model.Physician = PhysicianServiceProxy
+                            .Current
+                            .Physicians
+                            .FirstOrDefault(p => p.Id == Model.PhysicianId);
+                    }
+                }
+
+                return Model?.Physician?.Name ?? string.Empty;
             }
         }
 
@@ -49,10 +81,17 @@ namespace App.Clinic.ViewModels
 
             }
          }
-        public ObservableCollection<Patient> Patients { 
-            get
-            {
-                return new ObservableCollection<Patient>(PatientServiceProxy.Current.Patients);
+
+        public Physician? SelectedPhysician {
+            get{
+                return Model?.Physician;
+            }
+            set{
+                var selectedPhysician = value;
+                if(Model != null){
+                    Model.Physician = selectedPhysician;
+                    Model.PhysicianId = selectedPhysician?.Id ?? 0;
+                }
             }
         }
 
@@ -64,20 +103,7 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public void RefreshTime()
-        {
-            if (Model != null)
-            {
-                if (Model.StartTime != null)
-                {
-                    Model.StartTime = StartDate;
-                    Model.StartTime = Model.StartTime.Value.AddHours(StartTime.Hours);
-                }
-            }
-        }
-        
         public DateTime StartDate { 
-            
             get
             {
                 return Model?.StartTime?.Date ?? DateTime.Today;
@@ -92,11 +118,49 @@ namespace App.Clinic.ViewModels
                 }
             }
         }
+
         public TimeSpan StartTime { get; set; }
+        
+        //don't let the user choose this; it will be updated for the type of appointment selected.
+        public TimeSpan EndTime { get; set; }
+
+        // this prevents the time from being printed. Used in the management.xml 
+        public string DisplayAppointmentStartDate => StartDate.ToString("MM/dd/yyyy");
+
+        //print just the time
+        public string DisplayAppointmentStartTime => Model.StartTime?.ToString("hh:mm tt") ?? "";
+
+        //Can't use TimePicker with mccatalyst, so I'm hardcoding times into a list here
+        public List<TimeSpan> AvailableStartTimes { get; set; } = new List<TimeSpan>
+        {
+            new TimeSpan(8, 0, 0),
+            new TimeSpan(9, 0, 0),
+            new TimeSpan(10, 0, 0),
+            new TimeSpan(11, 0, 0),
+            new TimeSpan(12, 0, 0),
+            new TimeSpan(13, 0, 0),
+            new TimeSpan(14, 0, 0),
+            new TimeSpan(15, 0, 0),
+            new TimeSpan(16, 0, 0),
+            new TimeSpan(17, 0, 0)
+        };
+
+        public void RefreshTime()
+        {
+            if (Model != null)
+            {
+                if (Model.StartTime != null)
+                {
+                    Model.StartTime = StartDate;
+                    Model.StartTime = Model.StartTime.Value.AddHours(StartTime.Hours);
+                }
+            }
+        }
 
         public AppointmentViewModel() {
             Model = new Appointment();
         }
+        
         public AppointmentViewModel(Appointment a)
         {
             Model = a;
