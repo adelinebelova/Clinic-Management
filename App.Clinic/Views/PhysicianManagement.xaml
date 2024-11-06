@@ -6,7 +6,7 @@
              NavigatedTo="PhysicianManagement_NavigatedTo"
              >
              
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="12*"/>

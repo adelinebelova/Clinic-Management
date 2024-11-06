@@ -35,5 +35,6 @@ namespace App.Clinic.ViewModels
         {
             NotifyPropertyChanged(nameof(Appointments));
         }
+
     }
 }

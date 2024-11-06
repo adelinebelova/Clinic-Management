@@ -6,12 +6,21 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace App.Clinic.ViewModels
 {
-    public class AppointmentViewModel
+    public class AppointmentViewModel: INotifyPropertyChanged
     {
+        //To update the insurance and price once treatments and patiens are selected.
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public Appointment? Model { get; set; }
 
         public ObservableCollection<Patient> Patients { 
@@ -93,6 +102,7 @@ namespace App.Clinic.ViewModels
                 {
                     Model.Patient = selectedPatient;
                     Model.PatientId = selectedPatient?.Id ?? 0;
+                    UpdateInsuranceProviderOnScreen();
                 }
 
             }
@@ -110,6 +120,21 @@ namespace App.Clinic.ViewModels
                 }
             }
         }
+
+        //get the insurance from patient selected in dropdown
+        public string InsuranceProvider{
+            get => SelectedPatient?.InsuranceProvider ?? "N/A"; 
+            set{
+                if(SelectedPatient != null){
+                    SelectedPatient.InsuranceProvider = value;
+                    NotifyPropertyChanged(nameof(InsuranceProvider));
+                }
+            }
+        }
+
+        private void UpdateInsuranceProviderOnScreen(){
+            InsuranceProvider = SelectedPatient?.InsuranceProvider ?? "N/A";
+        }   
 
         public DateTime MinStartDate
         {
@@ -136,9 +161,7 @@ namespace App.Clinic.ViewModels
         }
 
         public TimeSpan StartTime { get; set; }
-        
-        //don't let the user choose this; it will be updated for the type of appointment selected.
-        public TimeSpan EndTime { get; set; }
+        //each appointment will be one hour long.
 
         // this prevents the time from being printed. Used in the management.xml 
         public string DisplayAppointmentStartDate => StartDate.ToString("MM/dd/yyyy");
@@ -217,5 +240,6 @@ namespace App.Clinic.ViewModels
             }
             
         }
+
     }
 }

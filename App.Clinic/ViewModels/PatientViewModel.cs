@@ -111,6 +111,29 @@ public class PatientViewModel
         }
     }
 
+    public string InsuranceProvider{
+        get => Model?.InsuranceProvider ?? "N/A"; 
+        set{
+            if(Model != null){
+                Model.InsuranceProvider = value;
+            }
+        }
+    }
+
+    public string PolicyNumber {
+        get => Model?.PolicyNumber ?? "N/A"; 
+        set{
+            if(Model != null){
+                Model.PolicyNumber = value;
+            }
+        }
+    }
+
+        public List<string> InsuranceProviders { get; set; } = new List<string>
+        {
+            "N/A", "UnitedHealthcare", "Blue Cross Blue Shield", "Cigna", "Humana", "Aetna", "Tricare" 
+        };
+
     public PatientViewModel(){
         Model = new Patient();
         SetupCommands();

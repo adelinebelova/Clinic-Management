@@ -9,6 +9,13 @@ namespace Library.Clinic.Models{
         public string Race{get; set;}
         public string Gender {get; set;}
 
+        //insurance information. eventually add coverage type, effectives dates, copay/deductible. 
+        public string InsuranceProvider {get; set;}
+        public string PolicyNumber {get; set;}
+
+        //based on what took place in appointment
+        public List<string> Treatments {get; set;}
+
         public List<string> Diagnoses {get; set;}
         public List<string> Prescriptions {get; set;}
 

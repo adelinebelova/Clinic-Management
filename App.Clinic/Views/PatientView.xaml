@@ -5,9 +5,11 @@
              Title="PatientView"
              NavigatedTo="PatientView_NavigatedTo"
              >
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -28,6 +30,10 @@
             <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Race}"/>
             <Label Grid.Row="4" Grid.Column="0" Text="Gender:"/>
             <Entry Grid.Row="4" Grid.Column="1" Text="{Binding Gender}"/>
+            <Label Grid.Row="5" Grid.Column="0" Text="Insurance Provider:"/>
+            <Picker Grid.Row="5" Grid.Column="1" ItemsSource="{Binding InsuranceProviders}" SelectedItem="{Binding InsuranceProvider}"/>
+            <Label Grid.Row="6" Grid.Column="0" Text="Policy Number:"/>
+            <Entry Grid.Row="6" Grid.Column="1" Text="{Binding PolicyNumber}"/>
             
         </Grid>
         <Button

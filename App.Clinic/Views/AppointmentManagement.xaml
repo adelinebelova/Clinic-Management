@@ -4,7 +4,7 @@
              x:Class="App.Clinic.Views.AppointmentManagement"
              Title="AppointmentManagement"
              NavigatedTo="AppointmentManagement_NavigatedTo">
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <ListView
             ItemsSource="{Binding Appointments}"
             >
@@ -13,6 +13,8 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -65,6 +67,39 @@
                                     Text="{Binding DisplayAppointmentStartTime}"/>
                             </Grid>
                             <Grid Grid.Column="4">
+                                <!-- Insurance Provider Display-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                    Text="Insurance Provider:"/>
+                                <Label Grid.Column="1"
+                                    Text="{Binding InsuranceProvider}"/>
+                            </Grid>
+                            <Grid Grid.Column="5">
+                                <!-- Treatment Display-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                    Text="Treatments:"/>
+                                <Label Grid.Column="1"
+                                    Text=""/>
+                            </Grid>
+                            <Grid Grid.Column="6">
+                                <!-- Price Display-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0"
+                                    Text="Treatment Price:"/>
+                                <Label Grid.Column="1"
+                                    Text=""/>
+                            </Grid>
+                            <Grid Grid.Column="7">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>
@@ -73,7 +108,7 @@
                                     Command="{Binding DeleteCommand}" 
                                     Clicked="RefreshClicked"/>
                             </Grid>
-                            <Grid Grid.Column="5">
+                            <Grid Grid.Column="8">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition/>
                                 </Grid.ColumnDefinitions>

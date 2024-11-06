@@ -49,4 +49,5 @@ public partial class AppointmentView : ContentPage
     {
         (BindingContext as AppointmentViewModel)?.RefreshTime();
     }
+
 }

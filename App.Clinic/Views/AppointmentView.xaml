@@ -4,7 +4,7 @@
              x:Class="App.Clinic.Views.AppointmentView"
              Title="AppointmentView"
              NavigatedTo="AppointmentView_NavigatedTo">
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <Label Text="Patient"/>
         <Picker
             ItemsSource="{Binding Patients}"
@@ -20,6 +20,17 @@
         <Label Text="Appointment Start Time"/>
         <!-- TimePicker doesn't work in maccatalyst, so I manually set times here. -->
         <Picker ItemsSource="{Binding AvailableStartTimes}" SelectedItem="{Binding StartTime}" PropertyChanged="TimePicker_PropertyChanged"/> <!-- TimePicker doesnt work in maccatalyst... -->
+
+        <!-- Display Insurance Provider -->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="Insurance Provider:"/>
+            <Label Grid.Column="1" Text="{Binding InsuranceProvider}"/>
+        </Grid>
+
         <Button Text="Ok" Clicked="OkClicked"/>
         <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>

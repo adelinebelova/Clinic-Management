@@ -5,7 +5,7 @@
              Title="PhysicianView"
              NavigatedTo="PhysicianView_NavigatedTo"
              >
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition/>

@@ -5,7 +5,7 @@
              Title="PatientManagement"
              NavigatedTo="PatientManagement_NavigatedTo"
              >
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="5">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="12*"/>
@@ -31,6 +31,8 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
                             
                             <Label FontAttributes="Bold" Grid.Column="0" Text="{Binding Id}"/>
@@ -39,8 +41,10 @@
                             <Label Grid.Column="3" Text="{Binding Address}"/>
                             <Label Grid.Column="4" Text="{Binding Race}"/>
                             <Label Grid.Column="5" Text="{Binding Gender}"/>
-                            <Button Grid.Column="6" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
-                            <Button Grid.Column="7" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
+                            <Label Grid.Column="6" Text="{Binding InsuranceProvider}"/>
+                            <Label Grid.Column="7" Text="{Binding PolicyNumber}"/>
+                            <Button Grid.Column="8" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
+                            <Button Grid.Column="9" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
