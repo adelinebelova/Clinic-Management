@@ -22,7 +22,7 @@
                             </Grid.ColumnDefinitions>
                             
                             <Label Grid.Column="0" Text="{Binding Name}"/>
-                            <Label Grid.Column="1" Text="{Binding Price}"/>
+                            <Label Grid.Column="1" Text="{Binding PriceWithDollarSign}"/>
                             <Button Grid.Column="2" Text="Edit" Command="{Binding EditCommand}" CommandParameter="{Binding}"/>
                             <Button Grid.Column="3" Text="Delete" Command="{Binding DeleteCommand}" Clicked="RefreshClicked"/>
                         </Grid>

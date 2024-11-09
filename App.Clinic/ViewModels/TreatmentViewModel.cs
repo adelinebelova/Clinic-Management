@@ -51,6 +51,15 @@ public class TreatmentViewModel
         }
     }
 
+    public string PriceWithDollarSign{
+        get{
+            if(Model != null){
+                return "$" + Model.Price;
+            }
+            return string.Empty;
+        }
+    }
+
     public ICommand? DeleteCommand {get; set;}
     public ICommand? EditCommand { get; set; }
 
