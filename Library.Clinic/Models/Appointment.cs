@@ -5,7 +5,7 @@ namespace Library.Clinic.Models{
     {
         public Appointment() { }
         public int Id { get; set; }
-        public DateTime? StartTime { get; set; }
+        public DateTime? Start { get; set; }
         //each appointment will be 1 hour long. 
         public int PatientId { get; set; }
         public Patient? Patient { get; set; }
@@ -14,6 +14,6 @@ namespace Library.Clinic.Models{
 
         public Physician? Physician { get; set; }
 
-        public Dictionary<string, double> TreatmentAndPrice{ get; set; }
+        public double Price {get; set;}
     }
 }

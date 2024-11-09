@@ -45,6 +45,32 @@ namespace Library.Clinic.Services
             Appointments = new List<Appointment>();
         }
 
+        public bool CheckPhysicianAvailability(Appointment model){
+            if(model != null && model.Start.HasValue){
+                //end time is one hour after the start time
+                DateTime end = model.Start.Value.AddMinutes(60);
+
+                foreach (var appointment in Appointments)
+                {
+                    //check if physician is already booked on selected day
+                    if (appointment.Physician == model.Physician && appointment.Start.Value.Date == model.Start.Value.Date)
+                    {
+                        DateTime existingAppointmentStart = appointment.Start.Value;
+                        DateTime existingAppointmentEnd = existingAppointmentStart.AddMinutes(60);
+
+                        // check for time overlap
+                        if (model.Start < existingAppointmentEnd && end > existingAppointmentStart)
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                return true; // No conflicts
+            }
+            return false;
+        }
+
         public void AddOrUpdate(Appointment a)
         {
             var isAdd = false;

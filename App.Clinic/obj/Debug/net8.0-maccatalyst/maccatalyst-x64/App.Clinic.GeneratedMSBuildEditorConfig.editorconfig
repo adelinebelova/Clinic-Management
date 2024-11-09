@@ -81,3 +81,15 @@ build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = App.Clinic.Views.PhysicianView.xaml
 build_metadata.AdditionalFiles.TargetPath = Views/PhysicianView.xaml
 build_metadata.AdditionalFiles.RelativePath = Views/PhysicianView.xaml
+
+[/Users/adelinebelova/COP4870/Clinic/App.Clinic/Views/TreatmentManagementView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = App.Clinic.Views.TreatmentManagementView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/TreatmentManagementView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/TreatmentManagementView.xaml
+
+[/Users/adelinebelova/COP4870/Clinic/App.Clinic/Views/TreatmentView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = App.Clinic.Views.TreatmentView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views/TreatmentView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views/TreatmentView.xaml

@@ -103,6 +103,7 @@ namespace App.Clinic.ViewModels
                     Model.Patient = selectedPatient;
                     Model.PatientId = selectedPatient?.Id ?? 0;
                     UpdateInsuranceProviderOnScreen();
+                    NotifyPropertyChanged(nameof(IsPatientPhysicianSelected));
                 }
 
             }
@@ -117,6 +118,31 @@ namespace App.Clinic.ViewModels
                 if(Model != null){
                     Model.Physician = selectedPhysician;
                     Model.PhysicianId = selectedPhysician?.Id ?? 0;
+                    NotifyPropertyChanged(nameof(IsPatientPhysicianSelected));
+                }
+            }
+        }
+
+        public bool IsPhysicianAvailable{
+            get{
+                return AppointmentServiceProxy.Current.CheckPhysicianAvailability(Model);
+            }       
+        }
+        //used to show the rest of the screen once patient and physician are selected
+        public bool IsPatientPhysicianSelected{
+            get
+            {
+                return SelectedPatient != null && SelectedPhysician != null;
+            }
+        }
+
+         
+        //Implement price adjustments based on insurance and treatment plans
+        public double Price{
+            get => Model?.Price ?? 0.00;
+            set{
+                if(Model != null){
+                    Model.Price = value;
                 }
             }
         }
@@ -147,27 +173,27 @@ namespace App.Clinic.ViewModels
         public DateTime StartDate { 
             get
             {
-                return Model?.StartTime?.Date ?? DateTime.Today;
+                return Model?.Start?.Date ?? DateTime.Today;
             }
 
             set
             {
                 if (Model != null)
                 {
-                    Model.StartTime = value;
+                    Model.Start = value;
                     RefreshTime();
                 }
             }
         }
 
-        public TimeSpan StartTime { get; set; }
+        public TimeSpan Start { get; set; }
         //each appointment will be one hour long.
 
         // this prevents the time from being printed. Used in the management.xml 
         public string DisplayAppointmentStartDate => StartDate.ToString("MM/dd/yyyy");
 
         //print just the time
-        public string DisplayAppointmentStartTime => Model.StartTime?.ToString("hh:mm tt") ?? "";
+        public string DisplayAppointmentStartTime => Model.Start?.ToString("hh:mm tt") ?? "";
 
         //Can't use TimePicker with mccatalyst, so I'm hardcoding times into a list here
         public List<TimeSpan> AvailableStartTimes { get; set; } = new List<TimeSpan>
@@ -188,11 +214,8 @@ namespace App.Clinic.ViewModels
         {
             if (Model != null)
             {
-                if (Model.StartTime != null)
-                {
-                    Model.StartTime = StartDate;
-                    Model.StartTime = Model.StartTime.Value.AddHours(StartTime.Hours);
-                }
+                Model.Start = StartDate;
+                Model.Start = Model.Start.Value.AddHours(Start.Hours);
             }
         }
 
@@ -236,7 +259,10 @@ namespace App.Clinic.ViewModels
         {
             if(Model != null)
             {
-                AppointmentServiceProxy.Current.AddOrUpdate(Model);
+                //create appointment if the physician is not already booked
+                if(IsPhysicianAvailable){
+                    AppointmentServiceProxy.Current.AddOrUpdate(Model);
+                }           
             }
             
         }

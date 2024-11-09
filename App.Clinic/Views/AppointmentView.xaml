@@ -15,23 +15,49 @@
             ItemsSource="{Binding Physicians}"
             SelectedItem="{Binding SelectedPhysician}"
             />
-        <Label Text="Appointment Date"/>
-        <DatePicker Date="{Binding StartDate}" MinimumDate="{Binding MinStartDate}"/>
-        <Label Text="Appointment Start Time"/>
-        <!-- TimePicker doesn't work in maccatalyst, so I manually set times here. -->
-        <Picker ItemsSource="{Binding AvailableStartTimes}" SelectedItem="{Binding StartTime}" PropertyChanged="TimePicker_PropertyChanged"/> <!-- TimePicker doesnt work in maccatalyst... -->
 
-        <!-- Display Insurance Provider -->
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="Insurance Provider:"/>
-            <Label Grid.Column="1" Text="{Binding InsuranceProvider}"/>
-        </Grid>
+        <!-- Setting the rest of the page hidden until patient and physician has been picked. -->
+        <VerticalStackLayout>
+            <VerticalStackLayout.Triggers>
+                <DataTrigger Value="False" TargetType="VerticalStackLayout" Binding="{Binding IsPatientPhysicianSelected}">
+                    <Setter Property="IsVisible" Value="False"/>
+                </DataTrigger>
+            </VerticalStackLayout.Triggers>
 
-        <Button Text="Ok" Clicked="OkClicked"/>
-        <Button Text="Cancel" Clicked="CancelClicked"/>
+            <Label Text="Appointment Date"/>
+            <DatePicker Date="{Binding StartDate}" MinimumDate="{Binding MinStartDate}"/>
+            <Label Text="Appointment Start Time"/>
+            <!-- TimePicker doesn't work in maccatalyst, so I manually set times here. -->
+            <Picker ItemsSource="{Binding AvailableStartTimes}" SelectedItem="{Binding Start}" PropertyChanged="TimePicker_PropertyChanged"/> <!-- TimePicker doesnt work in maccatalyst... -->
+
+            <!-- Insurance Provider Display -->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="Insurance Provider:"/>
+                <Label Grid.Column="1" Text="{Binding InsuranceProvider}"/>
+            </Grid>
+
+            <!-- Price Display -->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="Total Price (w/o insurance):"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="TOTAL PRICE WITHOUT INSURANCE"/>
+                <Label Grid.Row="1" Grid.Column="0" Text="Total Price (with insurance):"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="TOTAL PRICE WITH INSURANCE"/>
+            </Grid>
+
+        </VerticalStackLayout>
+            <Button Text="Ok" Clicked="OkClicked"/>
+            <Button Text="Cancel" Clicked="CancelClicked"/>
     </VerticalStackLayout>
 </ContentPage>
