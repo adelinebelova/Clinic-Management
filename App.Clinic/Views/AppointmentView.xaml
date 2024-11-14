@@ -40,6 +40,26 @@
                 <Label Grid.Column="1" Text="{Binding InsuranceProvider}"/>
             </Grid>
 
+            <!-- Treatment Options Display -->
+            <Label Text="Select Treatment Options:"/>
+            <ListView ItemsSource="{Binding TreatmentOptions}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <CheckBox IsChecked="{Binding isSelected}" CheckedChanged="OnCheckedChanged"/>
+                                <Label Grid.Column="1" VerticalOptions="Center" Text="{Binding Name}"/>
+                                <Label Grid.Column="2" VerticalOptions="Center" Text="{Binding Price}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <!-- Price Display -->
             <Grid>
                 <Grid.RowDefinitions>

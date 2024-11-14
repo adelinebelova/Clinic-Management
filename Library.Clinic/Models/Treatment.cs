@@ -9,8 +9,11 @@ public class Treatment
 
     public double Price {get; set;}
 
+    public bool IsTreatmentSelected {get; set;}
+
     public Treatment(){
         Name = string.Empty;
         Price = 0.00;
+        IsTreatmentSelected = false;
     }
 }

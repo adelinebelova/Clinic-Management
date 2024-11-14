@@ -3,7 +3,7 @@ using System;
 namespace Library.Clinic.Models{
     public class Appointment
     {
-        public Appointment() { }
+        public Appointment() { Treatments = new List<Treatment>(); }
         public int Id { get; set; }
         public DateTime? Start { get; set; }
         //each appointment will be 1 hour long. 
@@ -14,6 +14,8 @@ namespace Library.Clinic.Models{
 
         public Physician? Physician { get; set; }
 
-        public double Price {get; set;}
+        public List<Treatment>? Treatments {get; set;}
+
+        public int TreatmentId {get; set;}
     }
 }

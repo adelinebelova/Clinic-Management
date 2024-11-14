@@ -302,6 +302,3 @@
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/obj/Debug/net8.0-maccatalyst/maccatalyst-x64/App.Clinic.pdb
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/obj/Debug/net8.0-maccatalyst/maccatalyst-x64/App.Clinic.genruntimeconfig.cache
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/obj/Debug/net8.0-maccatalyst/maccatalyst-x64/ref/App.Clinic.dll
-/Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/Microsoft.Maui.Controls.HotReload.Forms.dll
-/Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll
-/Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/Microsoft.VisualStudio.DesignTools.TapContract.dll

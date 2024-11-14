@@ -8,7 +8,6 @@
     <VerticalStackLayout Spacing="5">
         <ListView
             ItemsSource="{Binding Treatments}"
-            SelectedItem="{Binding SelectedTreatment}"
             >
             <ListView.ItemTemplate>
                 <DataTemplate>

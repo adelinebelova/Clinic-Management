@@ -1,5 +1,6 @@
 using App.Clinic.ViewModels;
 using Library.Clinic.Services;
+using Library.Clinic.Models;
 
 namespace App.Clinic.Views;
 
@@ -48,6 +49,13 @@ public partial class AppointmentView : ContentPage
     private void TimePicker_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
         (BindingContext as AppointmentViewModel)?.RefreshTime();
+    }
+
+    private void OnCheckedChanged(object sender, CheckedChangedEventArgs e){
+        if (sender is CheckBox checkBox && checkBox.BindingContext is TreatmentOptionsViewModel treatmentOption)
+        {
+            (BindingContext as AppointmentViewModel)?.AddorRemoveTreatments(treatmentOption);
+        }
     }
 
 }

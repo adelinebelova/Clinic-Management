@@ -79,15 +79,22 @@
                                     Text="{Binding InsuranceProvider}"/>
                             </Grid>
                             <Grid Grid.Column="5">
-                                <!-- Treatment Display-->
+                            <!-- Treatment Display -->
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0"
-                                    Text="Treatments:"/>
-                                <Label Grid.Column="1"
-                                    Text=""/>
+                                <Label Grid.Column="0" Text="Treatments:" />
+
+                                <!-- Nested ListView for displaying SelectedTreatments -->
+                                <ListView Grid.Column="1"
+                                        ItemsSource="{Binding SelectedTreatments}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextCell Text="{Binding Name}" />
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                             </Grid>
                             <Grid Grid.Column="6">
                                 <!-- Price Display-->

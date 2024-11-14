@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		lorAGchYxQEOrnn6vT65E9MLKGs=
+		3Sps7fgHdwfDo30FfWdjg/zgo8g=
 		</data>
 		<key>Resources/MauiInfo.plist</key>
 		<data>
@@ -51,28 +51,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ApQNRJtKS+mmVfTFpTnJh3HVaryIh3FW6Z3EGCwms9I=
+			zXaoYOhiwR0czCrtOKLpUTsy66I+DPKKyMCrFtNINJw=
 			</data>
 		</dict>
 		<key>MonoBundle/App.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HdLkl1ZBkROsXGY9CieLedSZbKbY+/hexUJWjwO7oW8=
+			8lnD9eAW4YHtUE6WU9/0PaRocRxI5kfIQsC81CZMD8Q=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			LtZ/Ly2V/HKVFsGFqOwUDoa/No/gICi2Wij9x1CSJt8=
+			ZDlpWgdiL5iBXltfwL433UXC8RCnmssZMQmcpUYgZbA=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			g7F05OqHjQx6zonPitciqSHTWQHaLJBjLOZhoC7PJ4E=
+			75OIuTb6eAopqxhwMQLu67hI6Q8YI0mF4toFbR30flQ=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -166,13 +166,6 @@
 			xkctCH0Xqx7gsEpCHTfVgq/gQiyctZ25WQLDAV96NlU=
 			</data>
 		</dict>
-		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			44GU/1+DJzLiyfdpmd3z6aQaCi0AXozuz6DuoDoTwNE=
-			</data>
-		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.Xaml.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -220,20 +213,6 @@
 			<key>hash2</key>
 			<data>
 			GLNwMVguoLYRgW7HbGzhU2+gMPbuBQ2Q0JlSC0rNwDU=
-			</data>
-		</dict>
-		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			bKphDSQjgkjA9FYGZNqIn5vQYWQX7L/VPEN8jqRRd+g=
-			</data>
-		</dict>
-		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.TapContract.dll</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			SVllLmIWcWiR7rAIZzHR+151Ngnme94U4zDpt7o7OIE=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Win32.Primitives.dll</key>
@@ -1661,7 +1640,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Y6XeOVHK8lr9mrkTrZWsXja/AhtWkZZ3w1RodYu8hTs=
+			cXkBrpj/iQ3JEdTNsj0cN3UdMlL9S83YKhhkmFGQsbI=
 			</data>
 		</dict>
 		<key>Resources/MauiInfo.plist</key>

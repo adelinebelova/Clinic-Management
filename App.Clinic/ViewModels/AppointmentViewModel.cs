@@ -36,6 +36,38 @@ namespace App.Clinic.ViewModels
             }
         }
 
+        //This will allow us to display the treatment options and select checkboxes without modifying Treatments
+        //universally. 
+        public ObservableCollection<TreatmentOptionsViewModel> TreatmentOptions{
+            get{
+                var currentTreatments = TreatmentServiceProxy.Current.Treatments;
+                var treatmentOptionCollection = new ObservableCollection<TreatmentOptionsViewModel>();
+
+                foreach (var treatment in currentTreatments){
+                    var treatmentOption = new TreatmentOptionsViewModel(treatment);
+                    treatmentOptionCollection.Add(treatmentOption);
+                }
+                return treatmentOptionCollection;
+            }
+        }
+
+        public List<Treatment> SelectedTreatments{
+            get => Model.Treatments;
+        }
+
+
+        public void AddorRemoveTreatments(TreatmentOptionsViewModel treatmentOption) { 
+            if(Model != null && treatmentOption != null){
+                var treatment = treatmentOption.Treatment; 
+                if (treatmentOption.isSelected && !Model.Treatments.Contains(treatment)){
+                    Model.Treatments.Add(treatment);
+                }
+                else if(!treatmentOption.isSelected && Model.Treatments.Contains(treatment)){
+                    Model.Treatments.Remove(treatment);
+                } 
+            }
+        }
+
         public int Id {
             get{
                 if(Model == null){
@@ -123,6 +155,8 @@ namespace App.Clinic.ViewModels
             }
         }
 
+
+
         public bool IsPhysicianAvailable{
             get{
                 return AppointmentServiceProxy.Current.CheckPhysicianAvailability(Model);
@@ -136,16 +170,6 @@ namespace App.Clinic.ViewModels
             }
         }
 
-         
-        //Implement price adjustments based on insurance and treatment plans
-        public double Price{
-            get => Model?.Price ?? 0.00;
-            set{
-                if(Model != null){
-                    Model.Price = value;
-                }
-            }
-        }
 
         //get the insurance from patient selected in dropdown
         public string InsuranceProvider{
@@ -246,13 +270,13 @@ namespace App.Clinic.ViewModels
 
         public AppointmentViewModel() {
             Model = new Appointment();
-            SetupCommands();
+            SetupCommands();     
         }
         
         public AppointmentViewModel(Appointment a)
         {
             Model = a;
-            SetupCommands();
+            SetupCommands(); 
         }
 
         public void AddOrUpdate()
