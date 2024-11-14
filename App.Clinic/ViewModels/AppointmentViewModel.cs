@@ -38,16 +38,9 @@ namespace App.Clinic.ViewModels
 
         //This will allow us to display the treatment options and select checkboxes without modifying Treatments
         //universally. 
-        public ObservableCollection<TreatmentOptionsViewModel> TreatmentOptions{
+        public ObservableCollection<Treatment> TreatmentOptions{
             get{
-                var currentTreatments = TreatmentServiceProxy.Current.Treatments;
-                var treatmentOptionCollection = new ObservableCollection<TreatmentOptionsViewModel>();
-
-                foreach (var treatment in currentTreatments){
-                    var treatmentOption = new TreatmentOptionsViewModel(treatment);
-                    treatmentOptionCollection.Add(treatmentOption);
-                }
-                return treatmentOptionCollection;
+                return new ObservableCollection<Treatment>(TreatmentServiceProxy.Current.Treatments);
             }
         }
 
@@ -56,14 +49,13 @@ namespace App.Clinic.ViewModels
         }
 
 
-        public void AddorRemoveTreatments(TreatmentOptionsViewModel treatmentOption) { 
+        public void AddorRemoveTreatments(Treatment treatmentOption) { 
             if(Model != null && treatmentOption != null){
-                var treatment = treatmentOption.Treatment; 
-                if (treatmentOption.isSelected && !Model.Treatments.Contains(treatment)){
-                    Model.Treatments.Add(treatment);
+                if (treatmentOption.isSelected && !Model.Treatments.Contains(treatmentOption)){
+                    Model.Treatments.Add(treatmentOption);
                 }
-                else if(!treatmentOption.isSelected && Model.Treatments.Contains(treatment)){
-                    Model.Treatments.Remove(treatment);
+                else if(!treatmentOption.isSelected && Model.Treatments.Contains(treatmentOption)){
+                    Model.Treatments.Remove(treatmentOption);
                 } 
             }
         }

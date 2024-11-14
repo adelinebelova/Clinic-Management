@@ -52,7 +52,7 @@ public partial class AppointmentView : ContentPage
     }
 
     private void OnCheckedChanged(object sender, CheckedChangedEventArgs e){
-        if (sender is CheckBox checkBox && checkBox.BindingContext is TreatmentOptionsViewModel treatmentOption)
+        if (sender is CheckBox checkBox && checkBox.BindingContext is Treatment treatmentOption)
         {
             (BindingContext as AppointmentViewModel)?.AddorRemoveTreatments(treatmentOption);
         }
