@@ -44,10 +44,6 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public List<Treatment> SelectedTreatments{
-            get => Model.Treatments;
-        }
-
 
         public void AddorRemoveTreatments(Treatment treatmentOption) { 
             if(Model != null && treatmentOption != null){
@@ -57,6 +53,9 @@ namespace App.Clinic.ViewModels
                 else if(!treatmentOption.isSelected && Model.Treatments.Contains(treatmentOption)){
                     Model.Treatments.Remove(treatmentOption);
                 } 
+
+                NotifyPropertyChanged(nameof(TotalWithoutInsurance));
+                NotifyPropertyChanged(nameof(TotalWithInsurance));
             }
         }
 
@@ -147,7 +146,58 @@ namespace App.Clinic.ViewModels
             }
         }
 
+        public List<Treatment> SelectedTreatments{
+            get => Model.Treatments;
+        }
 
+        public double TotalWithoutInsurance{
+            get{
+                if(Model != null && Model.Treatments != null){
+                    var total = 0.00;
+                    foreach(var treatment in Model.Treatments){
+                        total += treatment.Price;
+                    }
+                    return total;
+                }
+                else{
+                    return 0.00;
+                }
+            }
+        }
+
+        public double PatientCopay{
+            get{
+                if(Model != null && Model.Patient != null){
+                    return PatientServiceProxy.Current.GetCopay(Model.Patient);
+                }
+                else{
+                    return 0.00;
+                }
+            }
+        }
+
+        public double TotalWithInsurance{
+            get{
+                if(Model != null && Model.Patient != null && TotalWithoutInsurance > 0){
+                    if(Model.Patient.InsuranceProvider != "N/A"){
+                        //set total to copay based on insurance used
+                        var newTotal = PatientCopay;
+
+                        //if the copay is greater than the initial total cost, set it to the normal total
+                        if(newTotal > TotalWithoutInsurance){
+                            newTotal = TotalWithoutInsurance;
+                        }
+
+                        return newTotal;
+                    }
+                    //return the full price if patient doesn't have insurance
+                    else{
+                        return TotalWithoutInsurance;
+                    }
+                }
+                return 0.00;
+            }
+        }
 
         public bool IsPhysicianAvailable{
             get{

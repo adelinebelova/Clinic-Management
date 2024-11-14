@@ -71,9 +71,9 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Text="Total Price (w/o insurance):"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="TOTAL PRICE WITHOUT INSURANCE"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding TotalWithoutInsurance}" />
                 <Label Grid.Row="1" Grid.Column="0" Text="Total Price (with insurance):"/>
-                <Label Grid.Row="1" Grid.Column="1" Text="TOTAL PRICE WITH INSURANCE"/>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding TotalWithInsurance}"/>
             </Grid>
 
         </VerticalStackLayout>

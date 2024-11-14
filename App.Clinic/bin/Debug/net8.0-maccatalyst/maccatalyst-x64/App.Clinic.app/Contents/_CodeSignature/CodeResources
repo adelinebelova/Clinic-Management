@@ -51,28 +51,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QgJ2V4WCiTz0zMI6Kcz/k2mD3BAO6BEKePRUGTQlvuw=
+			n/M7HwCotQj764t1qu7J8Mx3bnM2+yv4hlTuM4whj30=
 			</data>
 		</dict>
 		<key>MonoBundle/App.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			eTTzdt5vAiZ3/aXAL3tH89X5/oYcaB9h75N+46Em8KA=
+			BNJM0RA9Dx7LAwz2vMRCKfii6Mo9NQUg6odN2yUq8/k=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			T5u7VF6l4T6STD7TnAPZMJxJTL0LigEowCSY0lgrCbM=
+			CJ3bQ3sVuSmBKcbqy8iCsw3PJlgAkRWkoS8POxiwuw4=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HJve9RJ3uCK6fkjIQixAdqiZh9oP3DR4VKQ/JhvugKc=
+			aXQcpZs8e9ZOUdgF1agy99rDEcWWS4NIU7P+cPMz6Qw=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -166,6 +166,13 @@
 			xkctCH0Xqx7gsEpCHTfVgq/gQiyctZ25WQLDAV96NlU=
 			</data>
 		</dict>
+		<key>MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			qpflHyBa+MRKZd8V0BQh5Fhv7ga/eHyftWhURAstH7k=
+			</data>
+		</dict>
 		<key>MonoBundle/Microsoft.Maui.Controls.Xaml.dll</key>
 		<dict>
 			<key>hash2</key>
@@ -213,6 +220,20 @@
 			<key>hash2</key>
 			<data>
 			GLNwMVguoLYRgW7HbGzhU2+gMPbuBQ2Q0JlSC0rNwDU=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WxGYaDvW4BvcJZKgH2Ti8i6yzRQpycpozHxR6gt9CCU=
+			</data>
+		</dict>
+		<key>MonoBundle/Microsoft.VisualStudio.DesignTools.TapContract.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			PsCdURiM3cm7GxmjLqQUt/smxvdq8M3ImdiekPP7PMg=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.Win32.Primitives.dll</key>

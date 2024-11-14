@@ -95,5 +95,6 @@ namespace Library.Clinic.Services
                 Appointments.Remove(appointmentToRemove);
             }
         }
+
     }
 }

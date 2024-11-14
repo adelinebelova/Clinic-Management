@@ -75,7 +75,7 @@ public class PatientViewModel
     }
 
     public DateOnly Birthday{
-        get => Model?.Birthday ?? DateOnly.MinValue; 
+        get => Model.Birthday; 
 
         set{
             if(Model != null){

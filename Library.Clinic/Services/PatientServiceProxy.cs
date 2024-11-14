@@ -26,7 +26,7 @@ namespace Library.Clinic.Services{
             instance = null;
 
 
-            Patients = new List<Patient>{ new Patient{Id = 0, Name = "bob"}};
+            Patients = new List<Patient>();
         }
         public int LastKey
         {
@@ -93,5 +93,41 @@ namespace Library.Clinic.Services{
                 patient.Diagnoses.Add(diagnoses);
             }
         }
+
+        //just dealing with copays for now. Eventually want to add deductibles
+        public double GetCopay(Patient p){
+            var copay = 0.00;
+            if(p.InsuranceProvider != "N/A"){
+                switch(p.InsuranceProvider){
+                    case "UnitedHealthcare":
+                        copay = 30.00;
+                        break;
+                    case "Blue Cross Blue Shield":
+                        copay = 50.00;
+                        break;
+                    case "Cigna":
+                        copay = 15.00;
+                        break;
+                    case "Humana":
+                        copay = 25.00;
+                        break;
+                    case "Aetna":
+                        copay = 40.00;
+                        break;
+                    case "Tricare":
+                        copay = 45.00;
+                        break;
+                    default:
+                        copay = 0.00;
+                        break;
+                }
+            }
+            //no insurance
+            else{
+                copay = 0.00;
+            }
+            return copay;
+        }
+
     }
 }

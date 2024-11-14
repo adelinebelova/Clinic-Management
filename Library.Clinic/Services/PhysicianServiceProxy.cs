@@ -25,7 +25,7 @@ namespace Library.Clinic.Services{
         {
             instance = null;
 
-            Physicians = new List<Physician>{ new Physician{Id = 0, Name = "sue"}};
+            Physicians = new List<Physician>();
         }
 
         public int LastKey{

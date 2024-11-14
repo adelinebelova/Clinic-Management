@@ -58,4 +58,5 @@ public partial class AppointmentView : ContentPage
         }
     }
 
+
 }

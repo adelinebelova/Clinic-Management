@@ -105,7 +105,8 @@
                                 <Label Grid.Column="0"
                                     Text="Treatment Price:"/>
                                 <Label Grid.Column="1"
-                                    Text=""/>
+                                    Text="{Binding TotalWithInsurance}"/>
+                                    <!-- If the patient does not have insurance, it will simply display the normal total-->
                             </Grid>
                             <Grid Grid.Column="7">
                                 <Grid.ColumnDefinitions>
