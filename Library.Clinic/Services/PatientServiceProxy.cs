@@ -59,28 +59,38 @@ namespace Library.Clinic.Services{
             }
         }
 
-        public void AddOrUpdatePatient(PatientDTO patient)
+        public async Task<PatientDTO?> AddOrUpdatePatient(PatientDTO patient)
         {
-            bool isAdd = false;
-            if (patient.Id <= 0)
+            var payload = await new WebRequestHandler().Post("/patient", patient);
+            var newPatient = JsonConvert.DeserializeObject<PatientDTO>(payload);
+            if(newPatient != null && newPatient.Id > 0 && patient.Id == 0)
             {
-                patient.Id = LastKey + 1;
-                isAdd = true;
+                //new patient to be added to the list
+                Patients.Add(newPatient);
+            } else if(newPatient != null && patient != null && patient.Id > 0 && patient.Id == newPatient.Id)
+            {
+                //edit, exchange the object in the list
+                var currentPatient = Patients.FirstOrDefault(p => p.Id == newPatient.Id);
+                var index = Patients.Count;
+                if (currentPatient != null)
+                {
+                    index = Patients.IndexOf(currentPatient);
+                    Patients.RemoveAt(index);
+                }
+                Patients.Insert(index, newPatient);
             }
 
-            if(isAdd)
-            {
-                Patients.Add(patient);
-            }
-
+            return newPatient;
         }
 
-        public void DeletePatient(int id) {
+        public async void DeletePatient(int id) {
             var patientToRemove = Patients.FirstOrDefault(p => p.Id == id);
 
             if (patientToRemove != null)
             {
+                //removes it from the server and the client. Optimization thing
                 Patients.Remove(patientToRemove);
+                await new WebRequestHandler().Delete($"/Patient/{id}");
             }
         }
 
