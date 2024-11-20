@@ -1,4 +1,5 @@
 using System;
+using Library.Clinic.Models;
 
 namespace Library.Clinic.DTO;
 
@@ -20,6 +21,23 @@ public class PatientDTO
 
     public List<string>? Diagnoses {get; set;}
     public List<string>? Prescriptions {get; set;}
+
+    //conversion constructor from patient to PatientDTO
+    public PatientDTO(Patient p){
+        Id = p.Id;
+        Name = p.Name;
+        Birthday = p.Birthday;
+        Address = p.Address;
+        Race = p.Race;
+        Gender = p.Gender;
+        InsuranceProvider = p.InsuranceProvider;
+        PolicyNumber = p.PolicyNumber;
+        Treatments = p.Treatments;
+        Diagnoses = p.Diagnoses;
+        Prescriptions = p.Prescriptions;
+    }
+
+    public PatientDTO(){}
 
     public override string ToString()
     {

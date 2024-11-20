@@ -37,7 +37,7 @@ public class PatientController : ControllerBase
 
     [HttpPost]
     //frombody: deserialize payload and slot it into function parameter
-    public PatientDTO? AddOrUpdate([FromBody] PatientDTO? patient){
+    public Patient? AddOrUpdate([FromBody] PatientDTO? patient){
         return new PatientEC().AddOrUpdate(patient);
     }
 
