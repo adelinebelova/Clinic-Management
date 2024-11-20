@@ -21,5 +21,24 @@ public class PatientController : ControllerBase
     {
         return new PatientEC().Patients;
     }
+
+    [HttpGet("{id}")]
+    public Patient? GetById(int id)
+    {
+        return new PatientEC().GetById(id);
+    }
+
+    [HttpDelete("{id}")]
+    public Patient? Delete(int id)
+    {
+        return new PatientEC().Delete(id);
+    }
+
+    [HttpPost]
+    //frombody: deserialize payload and slot it into function parameter
+    public Patient? AddOrUpdate([FromBody] Patient? patient){
+        return new PatientEC().AddOrUpdate(patient);
+    }
+
 }
 

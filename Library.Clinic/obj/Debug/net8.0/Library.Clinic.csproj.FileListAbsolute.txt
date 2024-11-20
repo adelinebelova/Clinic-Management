@@ -10,3 +10,4 @@
 /Users/adelinebelova/COP4870/Clinic/Library.Clinic/obj/Debug/net8.0/refint/Library.Clinic.dll
 /Users/adelinebelova/COP4870/Clinic/Library.Clinic/obj/Debug/net8.0/Library.Clinic.pdb
 /Users/adelinebelova/COP4870/Clinic/Library.Clinic/obj/Debug/net8.0/ref/Library.Clinic.dll
+/Users/adelinebelova/COP4870/Clinic/Library.Clinic/obj/Debug/net8.0/Library.Clinic.csproj.AssemblyReference.cache

@@ -49,6 +49,7 @@
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Microsoft.Maui.dll
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Microsoft.Maui.Essentials.dll
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Microsoft.Maui.Graphics.dll
+/Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Newtonsoft.Json.dll
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Library.Clinic.dll
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Microsoft.Maui.Controls.HotReload.Forms.dll
 /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-x64/publish/../App.Clinic.app/Contents/MonoBundle/Microsoft.VisualStudio.DesignTools.MobileTapContracts.dll

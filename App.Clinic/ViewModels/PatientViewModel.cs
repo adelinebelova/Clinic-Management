@@ -74,7 +74,7 @@ public class PatientViewModel
         }
     }
 
-    public DateOnly Birthday{
+    public DateTime Birthday{
         get => Model.Birthday; 
 
         set{

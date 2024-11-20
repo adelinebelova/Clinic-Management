@@ -10,7 +10,7 @@
 		</data>
 		<key>Resources/Assets.car</key>
 		<data>
-		3Sps7fgHdwfDo30FfWdjg/zgo8g=
+		xHwMFYPPaNSFe24zES1NNB1XLxQ=
 		</data>
 		<key>Resources/MauiInfo.plist</key>
 		<data>
@@ -51,28 +51,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Dh/JvBMNRySK3Ztnuceqz98PICD+e1pne/a5eWtMycY=
+			V1az1wdpCXKISDmJDOwXJm1tTk/JEE/oXL7OLtsGJLA=
 			</data>
 		</dict>
 		<key>MonoBundle/App.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			DBqB31Myu/Dts6c2n7pcmYGWEj/H/ATpxR16PIHu/F0=
+			d78dozb6AgLa7Af20fX83TbaFXnOEuY/8Pww2Kob220=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.dll</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			F2/r3qY8S9MpbRnOldc1E6jqd3+bq5sktwZuIbi+SFQ=
+			o0ppmO7M0o0jV2LzRACBqEFKRzhm0RCdSTveLBRPIJ8=
 			</data>
 		</dict>
 		<key>MonoBundle/Library.Clinic.pdb</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3GiqbZSyctUDOMWcBArlU4pBHDDDNjm2wWnTzkcNwWY=
+			Xt2fT1jXV+f8yS3GcmVr4NZKNgR0LjfZ894jxM9xLO8=
 			</data>
 		</dict>
 		<key>MonoBundle/Microsoft.CSharp.dll</key>
@@ -248,6 +248,13 @@
 			<key>hash2</key>
 			<data>
 			d8TldomKIUyoyFswwMpbwauKjTYeAhjVYiE3T8U5R5g=
+			</data>
+		</dict>
+		<key>MonoBundle/Newtonsoft.Json.dll</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			IsZJ91/OW+fHzNqIgEc7Y072ns8z9dGritiSyvR9Wgc=
 			</data>
 		</dict>
 		<key>MonoBundle/System.AppContext.dll</key>
@@ -1661,7 +1668,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cXkBrpj/iQ3JEdTNsj0cN3UdMlL9S83YKhhkmFGQsbI=
+			LGC8D127Q5p1OUQg7G/01V0KFeSdq3ufkhs1IFLowS0=
 			</data>
 		</dict>
 		<key>Resources/MauiInfo.plist</key>

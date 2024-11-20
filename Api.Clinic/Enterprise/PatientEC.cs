@@ -14,4 +14,19 @@ public class PatientEC
         }
     }
 
+    public Patient? GetById(int id){
+        return FakeDatabase.Patients.FirstOrDefault(p => p.Id == id);
+    }
+    public Patient? Delete(int id){
+        var patientToDelete = FakeDatabase.Patients.FirstOrDefault(p => p.Id == id);
+        if(patientToDelete != null){
+            FakeDatabase.Patients.Remove(patientToDelete);
+        }
+        return patientToDelete;
+    }
+
+    public Patient? AddOrUpdate(Patient? patient){
+        return FakeDatabase.AddOrUpdatePatient(patient);
+    }
+
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nPki8hT9pCg=",
+  "dgSpecHash": "KuYuHlx3O/I=",
   "success": true,
   "projectFilePath": "/Users/adelinebelova/COP4870/Clinic/Library.Clinic/Library.Clinic.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/adelinebelova/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

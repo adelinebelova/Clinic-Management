@@ -1,5 +1,7 @@
 using System;
 using Library.Clinic.Models;
+using Library.Clinic.Util;
+using Newtonsoft.Json;
 
 namespace Library.Clinic.Services{
     public class PatientServiceProxy
@@ -25,8 +27,9 @@ namespace Library.Clinic.Services{
         {
             instance = null;
 
+            var patientsData = new WebRequestHandler().Get("/Patient").Result;
 
-            Patients = new List<Patient>();
+            Patients = JsonConvert.DeserializeObject<List<Patient>>(patientsData) ?? new List<Patient>();      
         }
         public int LastKey
         {
