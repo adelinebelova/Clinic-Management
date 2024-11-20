@@ -10,7 +10,7 @@ namespace Library.Clinic.Util
     public class WebRequestHandler
     {
         private string host = "localhost";
-        private string port = "5105";
+        private string port = "7139";
         private HttpClient Client { get; }
         public WebRequestHandler()
         {
