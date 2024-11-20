@@ -1,6 +1,7 @@
 using Library.Clinic.Models;
 using Library.Clinic.Services;
 using System;
+using Library.Clinic.DTO;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;

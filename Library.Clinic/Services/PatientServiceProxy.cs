@@ -1,4 +1,5 @@
 using System;
+using Library.Clinic.DTO;
 using Library.Clinic.Models;
 using Library.Clinic.Util;
 using Newtonsoft.Json;
@@ -29,7 +30,7 @@ namespace Library.Clinic.Services{
 
             var patientsData = new WebRequestHandler().Get("/Patient").Result;
 
-            Patients = JsonConvert.DeserializeObject<List<Patient>>(patientsData) ?? new List<Patient>();      
+            Patients = JsonConvert.DeserializeObject<List<PatientDTO>>(patientsData) ?? new List<PatientDTO>();      
         }
         public int LastKey
         {
@@ -43,8 +44,8 @@ namespace Library.Clinic.Services{
             }
         }
 
-        private List<Patient> patients; 
-        public List<Patient> Patients { 
+        private List<PatientDTO> patients; 
+        public List<PatientDTO> Patients { 
             get {
                 return patients;
             }
@@ -58,7 +59,7 @@ namespace Library.Clinic.Services{
             }
         }
 
-        public void AddOrUpdatePatient(Patient patient)
+        public void AddOrUpdatePatient(PatientDTO patient)
         {
             bool isAdd = false;
             if (patient.Id <= 0)
@@ -98,7 +99,7 @@ namespace Library.Clinic.Services{
         }
 
         //just dealing with copays for now. Eventually want to add deductibles
-        public double GetCopay(Patient p){
+        public double GetCopay(PatientDTO p){
             var copay = 0.00;
             if(p.InsuranceProvider != "N/A"){
                 switch(p.InsuranceProvider){

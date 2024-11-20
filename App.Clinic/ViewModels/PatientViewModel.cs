@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Library.Clinic.DTO;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -11,7 +12,7 @@ namespace App.Clinic.ViewModels;
 
 public class PatientViewModel
 {
-    public Patient? Model { get; set;}
+    public PatientDTO? Model { get; set;}
     public int Id {
         get{
             if(Model == null){
@@ -135,12 +136,12 @@ public class PatientViewModel
         };
 
     public PatientViewModel(){
-        Model = new Patient();
+        Model = new PatientDTO();
         SetupCommands();
     }
 
     //conversion constructor
-    public PatientViewModel(Patient? _model){
+    public PatientViewModel(PatientDTO? _model){
         Model = _model;
         SetupCommands();
     }

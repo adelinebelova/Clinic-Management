@@ -1,5 +1,6 @@
 using System;
 using Library.Clinic.Models;
+using Library.Clinic.DTO;
 
 namespace Api.Clinic.Database;
 
@@ -14,18 +15,18 @@ public static class FakeDatabase
         }
     }
 
-    private static List<Patient> patients = new List<Patient>{
-        new Patient{Id = 1, Name = "John Doe"},
-        new Patient{Id = 2, Name = "Jane Doe"}
+    private static List<PatientDTO> patients = new List<PatientDTO>{
+        new PatientDTO{Id = 1, Name = "John Doe"},
+        new PatientDTO{Id = 2, Name = "Jane Doe"}
     };
-    public static List<Patient> Patients{
+    public static List<PatientDTO> Patients{
         get{
             return patients;
         }
     
     }
 
-    public static Patient? AddOrUpdatePatient(Patient? patient){
+    public static PatientDTO? AddOrUpdatePatient(PatientDTO? patient){
         if(patient == null) return null; 
 
         bool isAdd = false;

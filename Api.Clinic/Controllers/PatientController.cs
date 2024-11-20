@@ -2,6 +2,7 @@ using System;
 using Microsoft.AspNetCore.Mvc;
 using Library.Clinic.Models;
 using Api.Clinic.Enterprise;
+using Library.Clinic.DTO;
 
 namespace Api.Clinic.Controllers;
 
@@ -17,26 +18,26 @@ public class PatientController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Patient> Get()
+    public IEnumerable<PatientDTO> Get()
     {
         return new PatientEC().Patients;
     }
 
     [HttpGet("{id}")]
-    public Patient? GetById(int id)
+    public PatientDTO? GetById(int id)
     {
         return new PatientEC().GetById(id);
     }
 
     [HttpDelete("{id}")]
-    public Patient? Delete(int id)
+    public PatientDTO? Delete(int id)
     {
         return new PatientEC().Delete(id);
     }
 
     [HttpPost]
     //frombody: deserialize payload and slot it into function parameter
-    public Patient? AddOrUpdate([FromBody] Patient? patient){
+    public PatientDTO? AddOrUpdate([FromBody] PatientDTO? patient){
         return new PatientEC().AddOrUpdate(patient);
     }
 

@@ -71,7 +71,7 @@ namespace Library.Clinic.Services{
         }
 
         public void DeletePhysician(int id){
-            //grabs the first patient that has that ID, or the default if not found
+            //grabs the first physician that has that ID, or the default if not found
             var physicianToRemove = Physicians.FirstOrDefault(p => p.Id == id);
             if(physicianToRemove != null){
                 Physicians.Remove(physicianToRemove);

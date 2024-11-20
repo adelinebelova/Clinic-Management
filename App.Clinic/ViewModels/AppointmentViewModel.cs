@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using Library.Clinic.DTO;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -23,10 +24,10 @@ namespace App.Clinic.ViewModels
         }
         public Appointment? Model { get; set; }
 
-        public ObservableCollection<Patient> Patients { 
+        public ObservableCollection<PatientDTO> Patients { 
             get
             {
-                return new ObservableCollection<Patient>(PatientServiceProxy.Current.Patients);
+                return new ObservableCollection<PatientDTO>(PatientServiceProxy.Current.Patients);
             }
         }
 
@@ -112,7 +113,7 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public Patient? SelectedPatient { 
+        public PatientDTO? SelectedPatient { 
             get
             {
                 return Model?.Patient;

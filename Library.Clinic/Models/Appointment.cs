@@ -1,4 +1,5 @@
 using System;
+using Library.Clinic.DTO;
 
 namespace Library.Clinic.Models{
     public class Appointment
@@ -8,7 +9,7 @@ namespace Library.Clinic.Models{
         public DateTime? Start { get; set; }
         //each appointment will be 1 hour long. 
         public int PatientId { get; set; }
-        public Patient? Patient { get; set; }
+        public PatientDTO? Patient { get; set; }
 
         public int PhysicianId { get; set;}
 
