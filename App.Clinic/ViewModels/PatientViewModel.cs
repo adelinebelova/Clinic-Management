@@ -53,15 +53,15 @@ public class PatientViewModel
         Shell.Current.GoToAsync($"//PatientDetails?patientId={selectedPatientId}");
     }
 
-    public void DoAdd(){
+    public async void DoAdd(){
         if (Model != null)
         {
-            PatientServiceProxy
+            await PatientServiceProxy
             .Current
             .AddOrUpdatePatient(Model);
         }
 
-        Shell.Current.GoToAsync("//Patients");
+        await Shell.Current.GoToAsync("//Patients");
     }
 
     public string Name{
