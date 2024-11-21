@@ -59,6 +59,17 @@ namespace Library.Clinic.Services{
             }
         }
 
+        public async Task<List<PatientDTO>> Search(string query) {
+
+            var patientsPayload = await new WebRequestHandler()
+                .Post("/Patient/Search", new Query(query));
+
+            Patients = JsonConvert.DeserializeObject<List<PatientDTO>>(patientsPayload)
+                ?? new List<PatientDTO>();
+
+            return Patients;
+        }
+
         public async Task<PatientDTO?> AddOrUpdatePatient(PatientDTO patient)
         {
             var payload = await new WebRequestHandler().Post("/patient", patient);
