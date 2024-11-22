@@ -1,5 +1,8 @@
 using System;
+using Library.Clinic.DTO;
 using Library.Clinic.Models;
+using Library.Clinic.Util;
+using Newtonsoft.Json;
 
 namespace Library.Clinic.Services{
     public class PhysicianServiceProxy
@@ -25,7 +28,9 @@ namespace Library.Clinic.Services{
         {
             instance = null;
 
-            Physicians = new List<Physician>();
+            var physicianData = new WebRequestHandler().Get("/Physician").Result;
+
+            Physicians = JsonConvert.DeserializeObject<List<PhysicianDTO>>(physicianData) ?? new List<PhysicianDTO>();      
         }
 
         public int LastKey{
@@ -39,9 +44,9 @@ namespace Library.Clinic.Services{
             }
         }
 
-        private List<Physician> physicians;
+        private List<PhysicianDTO> physicians;
 
-        public List<Physician> Physicians { 
+        public List<PhysicianDTO> Physicians { 
             get {
                 return physicians;
             }
@@ -54,27 +59,49 @@ namespace Library.Clinic.Services{
                 }
             }
         }
-        public void AddOrUpdatePhysician(Physician physician)
+
+        public async Task<List<PhysicianDTO>> Search(string query) {
+
+            var physiciansPayload = await new WebRequestHandler()
+                .Post("/Physician/Search", new Query(query));
+
+            Physicians = JsonConvert.DeserializeObject<List<PhysicianDTO>>(physiciansPayload)
+                ?? new List<PhysicianDTO>();
+
+            return Physicians;
+        }
+       public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
         {
-            bool isAdd = false;
-            if (physician.Id <= 0)
+            var payload = await new WebRequestHandler().Post("/Physician", physician);
+            var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+            if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
             {
-                physician.Id = LastKey + 1;
-                isAdd = true;
+                //new patient to be added to the list
+                Physicians.Add(newPhysician);
+            } else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
+            {
+                //edit, exchange the object in the list
+                var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
+                var index = Physicians.Count;
+                if (currentPhysician != null)
+                {
+                    index = Physicians.IndexOf(currentPhysician);
+                    Physicians.RemoveAt(index);
+                }
+                Physicians.Insert(index, newPhysician);
             }
 
-            if(isAdd)
-            {
-                Physicians.Add(physician);
-            }
-
+            return newPhysician;
         }
 
-        public void DeletePhysician(int id){
-            //grabs the first physician that has that ID, or the default if not found
+        public async void DeletePhysician(int id) {
             var physicianToRemove = Physicians.FirstOrDefault(p => p.Id == id);
-            if(physicianToRemove != null){
+
+            if (physicianToRemove != null)
+            {
+                //removes it from the server and the client. Optimization thing
                 Physicians.Remove(physicianToRemove);
+                await new WebRequestHandler().Delete($"/Physician/{id}");
             }
         }
     }

@@ -5,14 +5,18 @@ namespace Api.Clinic.Database;
 
 public static class FakeDatabase
 {
-    public static int LastKey{
-        get{
-            if(Patients.Any()){
-                return Patients.Select(x => x.Id).Max();
-            }
-            return 0;
+    //generic LastKey for physician, appointment, and patient
+    public static int LastKey<T>(IEnumerable<T> collection) where T : class
+    {
+        if (collection.Any())
+        {
+            return collection
+                .Select(item => (int)item.GetType().GetProperty("Id").GetValue(item))
+                .Max();
         }
+        return 0;
     }
+
 
     private static List<Patient> patients = new List<Patient>{
         new Patient{Id = 1, Name = "John Doe"},
@@ -30,7 +34,8 @@ public static class FakeDatabase
 
         bool isAdd = false;
         if(patient.Id <= 0 ){
-            patient.Id = LastKey + 1;
+            var lastKey = LastKey(Patients);
+            patient.Id = lastKey + 1;
             isAdd = true;
         }
         if(isAdd){
@@ -39,4 +44,33 @@ public static class FakeDatabase
 
         return patient;
     }
+
+    /*****  PHYSICIANS  ****/
+    private static List<Physician> physicians = new List<Physician>{
+        new Physician{Id = 1, Name = "John Doe"},
+        new Physician{Id = 2, Name = "Jane Doe"}
+    };
+    public static List<Physician> Physicians{
+        get{
+            return physicians;
+        }
+    
+    }
+
+    public static Physician? AddOrUpdatePhysician(Physician? physician){
+        if(physician == null) return null; 
+
+        bool isAdd = false;
+        if(physician.Id <= 0 ){
+            var lastKey = LastKey(Physicians);
+            physician.Id = lastKey + 1;
+            isAdd = true;
+        }
+        if(isAdd){
+            Physicians.Add(physician);
+        }
+
+        return physician;
+    }
+
 }

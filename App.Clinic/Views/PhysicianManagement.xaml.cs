@@ -34,4 +34,10 @@ public partial class PhysicianManagement : ContentPage, INotifyPropertyChanged
     {
         (BindingContext as PhysicianManagementViewModel)?.Refresh();
     }
+
+    private void SearchClicked(object sender, EventArgs e)
+    {
+        (BindingContext as PhysicianManagementViewModel)?.Search();
+    }
+
 }

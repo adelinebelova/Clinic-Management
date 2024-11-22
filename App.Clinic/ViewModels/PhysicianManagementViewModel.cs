@@ -44,5 +44,14 @@ namespace App.Clinic.ViewModels
         {
             NotifyPropertyChanged(nameof(Physicians));
         }
+
+        public async void Search()
+        {
+            if (Query != null)
+            {
+                await PhysicianServiceProxy.Current.Search(Query);
+            }
+            Refresh();
+        }
     }
 }

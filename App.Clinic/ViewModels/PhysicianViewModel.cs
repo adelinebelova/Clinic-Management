@@ -3,12 +3,13 @@ using System.Runtime.CompilerServices;
 using Library.Clinic.Models;
 using System.Windows.Input;
 using Library.Clinic.Services;
+using Library.Clinic.DTO;
 
 namespace App.Clinic.ViewModels;
 
 public class PhysicianViewModel
 {
-    public Physician? Model { get; set;}
+    public PhysicianDTO? Model { get; set;}
     public int Id {
         get{
             if(Model == null){
@@ -60,18 +61,18 @@ public class PhysicianViewModel
             return;
         }
         var selectedPhysicianId = pvm?.Id ?? 0;
-        Shell.Current.GoToAsync($"//PatientDetails?patientId={selectedPhysicianId}");
+        Shell.Current.GoToAsync($"//PhysicianDetails?physicianId={selectedPhysicianId}");
     }
 
-    public void DoAdd(){
+    public async void DoAdd(){
         if (Model != null)
             {
-                PhysicianServiceProxy
+                await PhysicianServiceProxy
                 .Current
                 .AddOrUpdatePhysician(Model);
             }
 
-            Shell.Current.GoToAsync("//Physicians");
+            await Shell.Current.GoToAsync("//Physicians");
     }
 
     public int LicenseNumber{
@@ -85,8 +86,8 @@ public class PhysicianViewModel
         }
     }
 
-    public DateOnly GradDate{
-        get => Model?.GradDate ?? DateOnly.MinValue; 
+    public DateTime GradDate{
+        get => Model.GradDate; 
 
         set{
             if(Model != null){
@@ -107,12 +108,12 @@ public class PhysicianViewModel
     }
 
     public PhysicianViewModel(){
-        Model = new Physician();
+        Model = new PhysicianDTO();
         SetupCommands();
     }
 
     //conversion constructor
-    public PhysicianViewModel(Physician? _model){
+    public PhysicianViewModel(PhysicianDTO? _model){
         Model = _model;
         SetupCommands();
     }

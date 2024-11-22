@@ -31,9 +31,9 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        public ObservableCollection<Physician> Physicians {
+        public ObservableCollection<PhysicianDTO> Physicians {
             get{
-                return new ObservableCollection<Physician>(PhysicianServiceProxy.Current.Physicians);
+                return new ObservableCollection<PhysicianDTO>(PhysicianServiceProxy.Current.Physicians);
             }
         }
 
@@ -133,7 +133,7 @@ namespace App.Clinic.ViewModels
             }
          }
 
-        public Physician? SelectedPhysician {
+        public PhysicianDTO? SelectedPhysician {
             get{
                 return Model?.Physician;
             }

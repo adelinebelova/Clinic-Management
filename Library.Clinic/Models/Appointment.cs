@@ -13,7 +13,7 @@ namespace Library.Clinic.Models{
 
         public int PhysicianId { get; set;}
 
-        public Physician? Physician { get; set; }
+        public PhysicianDTO? Physician { get; set; }
 
         public List<Treatment>? Treatments {get; set;}
 
