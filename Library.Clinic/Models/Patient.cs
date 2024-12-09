@@ -17,16 +17,11 @@ namespace Library.Clinic.Models{
         //based on what took place in appointment
         public List<string> Treatments {get; set;}
 
-        public List<string> Diagnoses {get; set;}
-        public List<string> Prescriptions {get; set;}
-
         public Patient(){
             Name = string.Empty;  
             Address = string.Empty;
             Race = string.Empty;
             Gender = string.Empty;
-            Diagnoses = new List<string>(); 
-            Prescriptions = new List<string>();
         }
 
         public Patient(PatientDTO p){
@@ -39,8 +34,6 @@ namespace Library.Clinic.Models{
             InsuranceProvider = p.InsuranceProvider;
             PolicyNumber = p.PolicyNumber;
             Treatments = p.Treatments;
-            Diagnoses = p.Diagnoses;
-            Prescriptions = p.Prescriptions;
         }
         public override string ToString()
         {

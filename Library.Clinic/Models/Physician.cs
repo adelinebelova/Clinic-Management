@@ -5,7 +5,7 @@ namespace Library.Clinic.Models{
     public class Physician{
         public int Id {get; set;}
         public string? Name {get; set;}
-        public int? LicenseNumber {get; set;}
+        public string? LicenseNumber {get; set;}
         public DateTime GradDate {get; set;}
         public string? Specializations {get; set;}
 

@@ -30,9 +30,9 @@ public class PhysicianController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public PhysicianDTO? Delete(int id)
+    public void Delete(int id)
     {
-        return new PhysicianEC().Delete(id);
+        new PhysicianEC().Delete(id);
     }
 
     [HttpPost("Search")]
@@ -41,10 +41,14 @@ public class PhysicianController : ControllerBase
         return new PhysicianEC().Search(q?.Content ?? string.Empty)?.ToList() ?? new List<PhysicianDTO>();
     }
 
+    [HttpPost("UpdatePhysician")]
+    public Physician? Update([FromBody] Physician physician){
+        return new PhysicianEC().Update(physician);
+    }
+
     [HttpPost]
-    //frombody: deserialize payload and slot it into function parameter
-    public Physician? AddOrUpdate([FromBody] PhysicianDTO? physician){
-        return new PhysicianEC().AddOrUpdate(physician);
+    public Physician? Add([FromBody] Physician physician){
+        return new PhysicianEC().Add(physician);
     }
 
 }

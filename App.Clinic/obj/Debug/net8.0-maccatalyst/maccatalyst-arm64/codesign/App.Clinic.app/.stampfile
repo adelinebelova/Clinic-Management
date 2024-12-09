@@ -1,0 +1,1 @@
+-v --force --timestamp=none --sign - --entitlements /Users/adelinebelova/COP4870/Clinic/App.Clinic/obj/Debug/net8.0-maccatalyst/maccatalyst-arm64/Entitlements.xcent /Users/adelinebelova/COP4870/Clinic/App.Clinic/bin/Debug/net8.0-maccatalyst/maccatalyst-arm64/App.Clinic.app

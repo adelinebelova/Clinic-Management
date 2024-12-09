@@ -105,20 +105,6 @@ namespace Library.Clinic.Services{
             }
         }
 
-        public void AddPrescription(int id, string prescription){
-            var patient = Patients.FirstOrDefault(p => p.Id == id);
-            if(patient != null){
-                patient.Prescriptions.Add(prescription);
-            }
-        }
-
-        public void AddDiagnoses(int id, string diagnoses){
-            var patient = Patients.FirstOrDefault(p => p.Id == id);
-            if(patient != null){
-                patient.Diagnoses.Add(diagnoses);
-            }
-        }
-
         //just dealing with copays for now. Eventually want to add deductibles
         public double GetCopay(PatientDTO p){
             var copay = 0.00;

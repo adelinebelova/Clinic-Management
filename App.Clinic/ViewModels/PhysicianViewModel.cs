@@ -75,9 +75,9 @@ public class PhysicianViewModel
             await Shell.Current.GoToAsync("//Physicians");
     }
 
-    public int LicenseNumber{
+    public string LicenseNumber{
         //you can use lambda expressions to return the getter here
-        get => Model?.LicenseNumber ?? 0;
+        get => Model?.LicenseNumber ?? string.Empty;
             
         set{
             if(Model != null){

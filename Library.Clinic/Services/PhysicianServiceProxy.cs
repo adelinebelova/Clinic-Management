@@ -70,29 +70,95 @@ namespace Library.Clinic.Services{
 
             return Physicians;
         }
-       public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
-        {
-            var payload = await new WebRequestHandler().Post("/Physician", physician);
-            var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
-            if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
+    //    public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
+    //     {
+    //         var payload = await new WebRequestHandler().Post("/Physician", physician);
+    //         var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+    //         if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
+    //         {
+    //             //new patient to be added to the list
+    //             Physicians.Add(newPhysician);
+    //         } else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
+    //         {
+    //             //edit, exchange the object in the list
+    //             var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
+    //             var index = Physicians.Count;
+    //             if (currentPhysician != null)
+    //             {
+    //                 index = Physicians.IndexOf(currentPhysician);
+    //                 Physicians.RemoveAt(index);
+    //             }
+    //             Physicians.Insert(index, newPhysician);
+    //         }
+
+    //         return newPhysician;
+    //     }
+
+        public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
+        {   
+            PhysicianDTO? newPhysician = null;
+            //ADD
+            if(physician.Id == 0)
             {
-                //new patient to be added to the list
-                Physicians.Add(newPhysician);
-            } else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
-            {
-                //edit, exchange the object in the list
-                var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
-                var index = Physicians.Count;
-                if (currentPhysician != null)
-                {
-                    index = Physicians.IndexOf(currentPhysician);
-                    Physicians.RemoveAt(index);
+                var payload = await new WebRequestHandler().Post("/Physician", physician);
+                newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+                if(newPhysician != null && newPhysician.Id > 0){
+                    //new patient to be added to the list
+                    Physicians.Add(newPhysician);
                 }
-                Physicians.Insert(index, newPhysician);
+            
+            //UPDATE
+            } else if(physician != null && physician.Id > 0)
+            {
+                var payload = await new WebRequestHandler().Post("/Physician/UpdatePhysician", physician);
+                newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+
+                if(newPhysician != null && physician.Id == newPhysician.Id){
+                    //edit, exchange the object in the list
+                    var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
+                    var index = Physicians.Count;
+                    if (currentPhysician != null)
+                    {
+                        index = Physicians.IndexOf(currentPhysician);
+                        Physicians.RemoveAt(index);
+                    }
+                    Physicians.Insert(index, newPhysician);
+                }
             }
 
             return newPhysician;
         }
+
+        // public async Task<PhysicianDTO?> AddPhysician(PhysicianDTO physician){
+        //     var payload = await new WebRequestHandler().Post("/Physician", physician);
+        //     var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+        //     if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
+        //     {
+        //         //new patient to be added to the list
+        //         Physicians.Add(newPhysician);
+        //     }
+        //     return newPhysician;
+        // }
+
+        // public async Task<PhysicianDTO?> UpdatePhysician(PhysicianDTO physician){
+        //     var payload = await new WebRequestHandler().Post("/Physician/UpdatePhysician", physician);
+        //     var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
+        
+        //     if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
+        //     {
+        //         //edit, exchange the object in the list
+        //         var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
+        //         var index = Physicians.Count;
+        //         if (currentPhysician != null)
+        //         {
+        //             index = Physicians.IndexOf(currentPhysician);
+        //             Physicians.RemoveAt(index);
+        //         }
+        //         Physicians.Insert(index, newPhysician);
+        //     }
+
+        //     return newPhysician;
+        // }
 
         public async void DeletePhysician(int id) {
             var physicianToRemove = Physicians.FirstOrDefault(p => p.Id == id);

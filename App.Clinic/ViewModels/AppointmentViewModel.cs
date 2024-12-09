@@ -37,14 +37,8 @@ namespace App.Clinic.ViewModels
             }
         }
 
-        //This will allow us to display the treatment options and select checkboxes without modifying Treatments
-        //universally. 
-        public ObservableCollection<Treatment> TreatmentOptions{
-            get{
-                return new ObservableCollection<Treatment>(TreatmentServiceProxy.Current.Treatments);
-            }
-        }
-
+        //initialized in the constructor
+        public ObservableCollection<Treatment> TreatmentOptions{get; set;}
 
         public void AddorRemoveTreatments(Treatment treatmentOption) { 
             if(Model != null && treatmentOption != null){
@@ -313,12 +307,49 @@ namespace App.Clinic.ViewModels
 
         public AppointmentViewModel() {
             Model = new Appointment();
+            
+            // make hardcopy of all treatments from the service proxy list
+            var treatments = new List<Treatment>();
+            foreach (var treatment in TreatmentServiceProxy.Current.Treatments)
+            {
+                treatments.Add(new Treatment
+                {
+                    Id = treatment.Id,
+                    Name = treatment.Name,
+                    Price = treatment.Price,
+                    isSelected = false // default to unselected
+                });
+            }
+            TreatmentOptions = new ObservableCollection<Treatment>(treatments);
+            
             SetupCommands();     
         }
         
         public AppointmentViewModel(Appointment a)
         {
             Model = a;
+
+            // create a deep copy of the treatments from the service proxy list
+            var treatments = new List<Treatment>();
+            if(TreatmentServiceProxy.Current.Treatments != null){
+                foreach (var treatment in TreatmentServiceProxy.Current.Treatments)
+                {
+                    treatments.Add(new Treatment{
+                        Id = treatment.Id,
+                        Name = treatment.Name,
+                        Price = treatment.Price,
+                        // preserve selection state by checking if treatment is on the model
+                        isSelected = a.Treatments?.Any(t => t.Id == treatment.Id) ?? false
+                    });
+
+                }
+
+            }
+            TreatmentOptions = new ObservableCollection<Treatment>(treatments);
+
+            //preserve start time for editings
+            Start = Model.Start?.TimeOfDay ?? TimeSpan.Zero;
+
             SetupCommands(); 
         }
 

@@ -19,8 +19,6 @@ public class PatientDTO
     //based on what took place in appointment
     public List<string>? Treatments {get; set;}
 
-    public List<string>? Diagnoses {get; set;}
-    public List<string>? Prescriptions {get; set;}
 
     //conversion constructor from patient to PatientDTO
     public PatientDTO(Patient p){
@@ -33,8 +31,6 @@ public class PatientDTO
         InsuranceProvider = p.InsuranceProvider;
         PolicyNumber = p.PolicyNumber;
         Treatments = p.Treatments;
-        Diagnoses = p.Diagnoses;
-        Prescriptions = p.Prescriptions;
     }
 
     public PatientDTO(){}

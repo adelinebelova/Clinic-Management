@@ -11,7 +11,7 @@ public class PhysicianEC
 
     public IEnumerable<PhysicianDTO> Physicians{
         get{
-            return FakeDatabase.Physicians.Take(100).Select(p => new PhysicianDTO(p));
+            return new MySQLContext().GetPhysicians().Select(p => new PhysicianDTO(p));
         }
     }
 
@@ -30,19 +30,37 @@ public class PhysicianEC
         }
         return null;
      }
-    public PhysicianDTO? Delete(int id){
-        var physicianToDelete = FakeDatabase.Physicians.FirstOrDefault(p => p.Id == id);
-        if(physicianToDelete != null){
-            FakeDatabase.Physicians.Remove(physicianToDelete);
-            return new PhysicianDTO(physicianToDelete);
-        }
-        return null;
+    // public PhysicianDTO? Delete(int id){
+    //     var physicianToDelete = FakeDatabase.Physicians.FirstOrDefault(p => p.Id == id);
+    //     if(physicianToDelete != null){
+    //         FakeDatabase.Physicians.Remove(physicianToDelete);
+    //         return new PhysicianDTO(physicianToDelete);
+    //     }
+    //     return null;
+    // }
+
+    // public Physician? AddOrUpdate(PhysicianDTO? physician){
+    //     if(physician == null) return null;
+
+    //     return FakeDatabase.AddOrUpdatePhysician(new Physician(physician));
+    // }
+
+    public Physician Add(Physician phy)
+    {
+        return new MySQLContext().AddPhysician(phy);
     }
 
-    public Physician? AddOrUpdate(PhysicianDTO? physician){
-        if(physician == null) return null;
+    public Physician Update(Physician phy)
+    {
+        new MySQLContext().UpdatePhysician(phy);
 
-        return FakeDatabase.AddOrUpdatePhysician(new Physician(physician));
+        return phy;
+    }
+
+    public void Delete(int id)
+    {
+        new MySQLContext().DeletePhysician(id);
+        return;
     }
 
 }

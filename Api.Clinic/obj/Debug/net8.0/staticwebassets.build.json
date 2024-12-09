@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "zFRl6/zylRlC0DWFoIGWQxdpNSfOBuuF8dNmxWah+Kk=",
+  "Hash": "syhTQ/zI0t0KH8Yva/WcMMBbvHmPob3i5DG4qLylaR4=",
   "Source": "Api.Clinic",
   "BasePath": "_content/Api.Clinic",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }
