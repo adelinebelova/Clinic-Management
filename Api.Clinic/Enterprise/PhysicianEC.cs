@@ -17,10 +17,12 @@ public class PhysicianEC
 
     public IEnumerable<PhysicianDTO>? Search(string query)
     {
-        return FakeDatabase.Physicians
-            .Where(p => p.Name.ToUpper()
-                .Contains(query?.ToUpper() ?? string.Empty))
-            .Select(p => new PhysicianDTO(p));
+        // return FakeDatabase.Physicians
+        //     .Where(p => p.Name.ToUpper()
+        //         .Contains(query?.ToUpper() ?? string.Empty))
+        //     .Select(p => new PhysicianDTO(p));
+
+        return new MySQLContext().SearchPhysicians(query).Select(p => new PhysicianDTO(p));; 
     }
 
     public PhysicianDTO? GetById(int id){

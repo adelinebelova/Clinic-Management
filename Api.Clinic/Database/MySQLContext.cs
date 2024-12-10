@@ -1,6 +1,7 @@
 using Library.Clinic.Models;
 using MySql.Data.MySqlClient;
 using System.Collections.Generic;
+using Library.Clinic.DTO;
 
 namespace Api.Clinic.Database
 {
@@ -18,6 +19,46 @@ namespace Api.Clinic.Database
             var password = Environment.GetEnvironmentVariable("DB_CLINIC_PASSWORD");
 
             connectionString = $"Server={server};Database={database};Uid={user};Pwd={password};";
+        }
+
+        public IEnumerable<Physician>? SearchPhysicians(string query)
+        {
+            var returnVal = new List<Physician>();
+
+            try{
+                using (var conn = new MySqlConnection(connectionString)){
+                    var procedure = "PhysicianSearch";
+                    using (var cmd = new MySqlCommand(procedure, conn)){
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("@query", query));
+
+                        conn.Open();
+                        var reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            var newApp = new Physician
+                            {
+                                Id = (int)reader["Id"],
+                                Name = reader["PhysicianName"].ToString()
+                            };
+
+                            returnVal.Add(newApp);
+                        }
+                        conn.Close();
+                    }
+                }
+            } 
+            catch (MySqlException ex)
+            {
+                Console.WriteLine($"MySQL error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
+            }
+            
+            return returnVal;
+            
         }
 
         public IEnumerable<Physician> GetPhysicians()

@@ -20,7 +20,7 @@ CREATE PROCEDURE PhysicianSearch
 	IN query VARCHAR(50)
 )
 BEGIN
-	SELECT * FROM Physician WHERE Name LIKE CONCAT('%', query, '%');
+	SELECT * FROM Physician WHERE PhysicianName LIKE CONCAT('%', query, '%');
 END//
 
 CREATE PROCEDURE PhysicianAdd
@@ -65,6 +65,7 @@ BEGIN
 END//
 
 DELIMITER ;
+
 
 
 

@@ -70,29 +70,6 @@ namespace Library.Clinic.Services{
 
             return Physicians;
         }
-    //    public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
-    //     {
-    //         var payload = await new WebRequestHandler().Post("/Physician", physician);
-    //         var newPhysician = JsonConvert.DeserializeObject<PhysicianDTO>(payload);
-    //         if(newPhysician != null && newPhysician.Id > 0 && physician.Id == 0)
-    //         {
-    //             //new patient to be added to the list
-    //             Physicians.Add(newPhysician);
-    //         } else if(newPhysician != null && physician != null && physician.Id > 0 && physician.Id == newPhysician.Id)
-    //         {
-    //             //edit, exchange the object in the list
-    //             var currentPhysician = Physicians.FirstOrDefault(p => p.Id == newPhysician.Id);
-    //             var index = Physicians.Count;
-    //             if (currentPhysician != null)
-    //             {
-    //                 index = Physicians.IndexOf(currentPhysician);
-    //                 Physicians.RemoveAt(index);
-    //             }
-    //             Physicians.Insert(index, newPhysician);
-    //         }
-
-    //         return newPhysician;
-    //     }
 
         public async Task<PhysicianDTO?> AddOrUpdatePhysician(PhysicianDTO physician)
         {   
